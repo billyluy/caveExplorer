@@ -1,4 +1,4 @@
-package BillyJiaMing;
+package core.BillyJiaMing;
 
 public class JiaMingInput {
 
