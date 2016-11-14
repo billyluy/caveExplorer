@@ -1,9 +1,15 @@
 package BillyJiaMing;
 
-public class EventBillyJiaMing {
-	
-	public static void main(String args[]){
+import core.Event;
+
+public class EventBillyJiaMing implements Event{
+
+	@Override
+	public void play() {
+		// TODO Auto-generated method stub
 		
 	}
+	
+	
 
 }
