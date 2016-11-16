@@ -33,18 +33,14 @@ public class EventBillyJiaMing implements Event{
 			printArr(userHit);
 			CaveExplorer.print(" - - - Press enter to continue - - - ");
 			CaveExplorer.in.nextLine();
-			break;
-//			CaveExplorer.currentRoom = CaveExplorer.caves[1][2];
-//			CaveExplorer.startExploring();
-//			CaveExplorer.currentRoom.enter();
-//			if(noShip(userShipMap)){
-//				readSequence(SEQ_2);
-//				inGame = false;
-//			}
-//			else if (noShip(botShipMap)){
-//				readSequence(SEQ_3);
-//				inGame = false;
-//			}
+			if(noShip(userShipMap)){
+				readSequence(SEQ_2);
+				inGame = false;
+			}
+			else if (noShip(botShipMap)){
+				readSequence(SEQ_3);
+				inGame = false;
+			}
 			
 		}
 	}

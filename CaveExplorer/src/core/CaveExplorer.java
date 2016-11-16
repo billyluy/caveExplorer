@@ -21,8 +21,8 @@ public class CaveExplorer {
 			}
 		}
 		//ADD EVENT ROOMS
-		//caves[0][2] = new EventRoom("This is the room where that guy with a tail met you", new GameStartEvent());
-		caves[0][2] = new EventRoom("ship", new EventBillyJiaMing());
+		caves[0][2] = new EventRoom("This is the room where that guy with a tail met you", new GameStartEvent());
+		caves[1][2] = new EventRoom("ship", new EventBillyJiaMing());
 		currentRoom = caves[0][1];
 		currentRoom.enter();
 		//[0][1] is connected to [0][2]
