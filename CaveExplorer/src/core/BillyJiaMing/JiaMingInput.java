@@ -9,7 +9,7 @@ public class JiaMingInput {
 
 	public static void updateBotHit() {
 		// TODO this returns coords of place user picks
-		
+		//CHEAT CODE
 		//EventBillyJiaMing.userHit[1][1];
 	}
 

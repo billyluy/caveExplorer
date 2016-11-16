@@ -4,13 +4,12 @@ import core.CaveExplorer;
 import core.Event;
 
 public class EventBillyJiaMing implements Event{
-
 	public static final String[] SEQ_1 = {"You have come across a puzzle.","You can't go on until you paly this game and beat the GHOST",
 			"The GHOST challenges you to a game of battleship, but with ghost instead of ships!!!"};
-	public static final String[] GAME_RES = {"NOOOO I LOST","HAAAA I BEAT YOU"};
+	public static final String[] SEQ_2 = {"You have defeated the ghost in the puzzle","The door magically unlocks"
+			,"You are now free to go after you defeated the Ghost"};
+	public static final String[] SEQ_3 = {"The Ghost has defeated you","It seems the ghost is smarter than you"};
 	
-//	public static boolean[][] userShip = new boolean[10][10];
-//	public static boolean[][] botShip = new boolean[10][10];
 	public static String[][] userHit = new String[10][10]; //USERS MAP
 	public static String[][] botHit = new String[10][10]; //BOTS MAP
 	
@@ -28,21 +27,27 @@ public class EventBillyJiaMing implements Event{
 		boolean[][] botShipMap = BillyAi.placeShip();
 		boolean inGame = true;
 		while(inGame){
-			printArr(botHit);
+			printArr(botHit); // shows bot map
 			JiaMingInput.updateBotHit(); //update user hit
 			BillyAi.updateUserHit();
 			printArr(userHit);
-			if(noShip(userShipMap)){
-				CaveExplorer.print(GAME_RES[1]);
-				inGame = false;
-			}
-			else if (noShip(botShipMap)){
-				CaveExplorer.print(GAME_RES[0]);
-				inGame = false;
-			}
+			CaveExplorer.print(" - - - Press enter to continue - - - ");
+			CaveExplorer.in.nextLine();
+			break;
+//			CaveExplorer.currentRoom = CaveExplorer.caves[1][2];
+//			CaveExplorer.startExploring();
+//			CaveExplorer.currentRoom.enter();
+//			if(noShip(userShipMap)){
+//				readSequence(SEQ_2);
+//				inGame = false;
+//			}
+//			else if (noShip(botShipMap)){
+//				readSequence(SEQ_3);
+//				inGame = false;
+//			}
+			
 		}
 	}
-	
 	private static boolean noShip(boolean[][] arr) {
 		for(int r =0;r < arr.length;r++){
 			for(int c =0; c<arr[r].length;c++){
@@ -54,24 +59,11 @@ public class EventBillyJiaMing implements Event{
 	}
 
 	public static void printArr(String[][] bolArr){
-		public static void print(int roomsX, int roomsY) {
-			for (int j = 0; j != roomsX; j++) {
-				System.out.print("____");
+		for(int r =0;r < bolArr.length;r++){
+			for(int c =0; c<bolArr[r].length;c++){
+				System.out.print("[" + bolArr[r][c] + "]");
 			}
-			System.out.println();
-
-			for (int i = 0; i != roomsY; i++) {
-				for (int j = 3; j > 0; j--) {
-					for (int k = 0; k != roomsX; k++) {
-						if (j == 1) {
-							System.out.print("|___");
-						} else {
-							System.out.print("|   ");
-						}
-					}
-					System.out.println("|");
-				}
-			}
+			System.out.println("");
 		}
 	}
 	
