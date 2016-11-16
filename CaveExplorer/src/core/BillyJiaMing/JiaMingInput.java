@@ -2,7 +2,7 @@ package core.BillyJiaMing;
 
 public class JiaMingInput {
 
-	public static boolean[][] placeShip() {
+	public static String[][] placeShip() {
 		// TODO print map user
 		return null;
 	}

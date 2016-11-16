@@ -10,44 +10,43 @@ public class EventBillyJiaMing implements Event{
 			,"You are now free to go after you defeated the Ghost"};
 	public static final String[] SEQ_3 = {"The Ghost has defeated you","It seems the ghost is smarter than you"};
 	
-	public static String[][] userHit = new String[10][10]; //USERS MAP
-	public static String[][] botHit = new String[10][10]; //BOTS MAP
-	
+	public static String[][] userMap = new String[10][10]; //USERS MAP
+	public static String[][] botMap = new String[10][10]; //BOTS MAP
 	public void play() {
 		readSequence(SEQ_1);
 		CaveExplorer.print("Will you battle the ghost");
 		if(CaveExplorer.in.nextLine().indexOf("yes")>-1){
 			CaveExplorer.print("GAME STARTED");
 		}else{ /*fix for other in*/
-			CaveExplorer.print("TOO BAD, You have nowhere else to go and you must battle him");
+			CaveExplorer.print("TOO BAD IDC, You have nowhere else to go and you must battle him");
 		}
-		setSpace(userHit);
-		setSpace(botHit);
-		boolean[][] userShipMap = JiaMingInput.placeShip();
-		boolean[][] botShipMap = BillyAi.placeShip();
+		setSpace(userMap);
+		setSpace(botMap);
+		userMap = JiaMingInput.placeShip();
+		botMap = BillyAi.placeShip();
 		boolean inGame = true;
 		while(inGame){
-			printArr(botHit); // shows bot map
-			JiaMingInput.updateBotHit(); //update user hit
+			printArr(botMap); // shows bot map
+			JiaMingInput.updateBotHit(); //user picks location and updates bot map with the new hits
 			BillyAi.updateUserHit();
-			printArr(userHit);
+			printArr(userMap);
 			CaveExplorer.print(" - - - Press enter to continue - - - ");
 			CaveExplorer.in.nextLine();
-			if(noShip(userShipMap)){
+			if(noShip(userMap)){
 				readSequence(SEQ_2);
 				inGame = false;
 			}
-			else if (noShip(botShipMap)){
+			else if (noShip(botMap)){
 				readSequence(SEQ_3);
 				inGame = false;
 			}
 			
 		}
 	}
-	private static boolean noShip(boolean[][] arr) {
+	private static boolean noShip(String[][] arr) {
 		for(int r =0;r < arr.length;r++){
 			for(int c =0; c<arr[r].length;c++){
-				if(arr[r][c] == true)
+				if(arr[r][c].equals("O"))
 					return false;
 			}
 		}

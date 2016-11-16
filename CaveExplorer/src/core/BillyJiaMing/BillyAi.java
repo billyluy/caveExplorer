@@ -2,7 +2,7 @@ package core.BillyJiaMing;
 
 public class BillyAi {
 
-	public static boolean[][] placeShip() {
+	public static String[][] placeShip() {
 		// TODO NO PRINTING all AI
 		return null;
 	}
