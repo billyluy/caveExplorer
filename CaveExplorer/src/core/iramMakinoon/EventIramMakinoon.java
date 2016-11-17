@@ -1,4 +1,4 @@
-package iramMakinoon;
+package core.iramMakinoon;
 
 import core.Event;
 

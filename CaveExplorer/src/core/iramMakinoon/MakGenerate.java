@@ -1,4 +1,4 @@
-package iramMakinoon;
+package core.iramMakinoon;
 //mak
 public class MakGenerate {
 	public static int[][] magicSq = new int[3][3];

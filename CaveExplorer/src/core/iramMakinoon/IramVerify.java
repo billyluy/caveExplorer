@@ -1,4 +1,4 @@
-package iramMakinoon;
+package core.iramMakinoon;
 
 public class IramVerify extends EventIramMakinoon{
 
