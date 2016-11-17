@@ -16,15 +16,18 @@ public class JiaMingInput {
 					System.out.println("Enter "+i+" to place "+shipTypes[i]);
 				}
 			}
-			if(validInput(placedShip))
-			EventBillyJiaMing.printArr(EventBillyJiaMing.userMap);
+			String input = CaveExplorer.in.nextLine();
+			if(validInput(placedShip,input)){
+				EventBillyJiaMing.printArr(EventBillyJiaMing.userMap);
+				System.out.println("Where would you like to place the ship? Pick a coord(x,y)");
+			}
 		}
 	}
 
-	private static boolean validInput(boolean[] placedShip) {
+	private static boolean validInput(boolean[] placedShip, String input) {
 		for(int i=0;i<placedShip.length;i++){
-			if(CaveExplorer.in.nextLine().indexOf(i)>-1 &&){
-				
+			if(input.indexOf(i)>-1 && placedShip[i]==false){
+				return true;
 			}
 		}
 		return false;
