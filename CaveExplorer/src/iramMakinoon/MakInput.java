@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class MakInput extends EventIramMakinoon{
  	public static Scanner in; 
-	 
+	//maks
  	public MakInput() {
 		in = new Scanner(System.in);
 		System.out.println("What number do you want to input for a?");
