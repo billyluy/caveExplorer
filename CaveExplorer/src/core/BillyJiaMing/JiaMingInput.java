@@ -27,7 +27,7 @@ public class JiaMingInput {
 	private static boolean validInput(boolean[] placedShip, String input) {
 		for(int i=0;i<placedShip.length;i++){
 			if(input.indexOf(i)>-1 && placedShip[i]==false){
-				return true;
+				return true
 			}
 		}
 		return false;
