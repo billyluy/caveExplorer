@@ -1,5 +1,5 @@
 package core.iramMakinoon;
-//mak
+
 public class MakGenerate {
 	public static int[][] magicSq = new int[3][3];
 	static int[][] puzzles = new int[2][9];// arrays and their lengths

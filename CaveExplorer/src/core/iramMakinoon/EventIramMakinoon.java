@@ -15,4 +15,3 @@ public class EventIramMakinoon implements Event {
 	}
 
 }
-//iram and mak
