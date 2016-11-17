@@ -22,8 +22,8 @@ public class EventBillyJiaMing implements Event{
 		}
 		setSpace(userMap);
 		setSpace(botMap);
-		userMap = JiaMingInput.placeShip();
-		botMap = BillyAi.placeShip();
+		//userMap = JiaMingInput.placeShip();
+		//botMap = BillyAi.placeShip();
 		boolean inGame = true;
 		while(inGame){
 			printArr(botMap); // shows bot map
@@ -55,11 +55,17 @@ public class EventBillyJiaMing implements Event{
 
 	public static void printArr(String[][] bolArr){
 		for(int r =0;r < bolArr.length;r++){
+			System.out.print(r+" ");
 			for(int c =0; c<bolArr[r].length;c++){
 				System.out.print("[" + bolArr[r][c] + "]");
 			}
 			System.out.println("");
 		}
+			System.out.print("  ");
+			for(int i=0;i<bolArr.length;i++){
+				System.out.print(" "+i+" ");
+			}
+			System.out.println("");
 	}
 	
 	public static void setSpace(String[][] arr){
