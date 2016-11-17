@@ -10,8 +10,9 @@ public class EventBillyJiaMing implements Event{
 			,"You are now free to go after you defeated the Ghost"};
 	public static final String[] SEQ_3 = {"The Ghost has defeated you","It seems the ghost is smarter than you"};
 	
-	public static String[][] userMap = new String[10][10]; //USERS MAP
-	public static String[][] botMap = new String[10][10]; //BOTS MAP
+	public static String[][] botShip = new String[10][10]; //Bots ship location
+	public static String[][] userMap = new String[10][10]; //user hit location & bot hit location
+	public static String[][] botMap = new String[10][10]; //user hit location
 	public void play() {
 		readSequence(SEQ_1);
 		CaveExplorer.print("Will you battle the ghost");
