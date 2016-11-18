@@ -1,22 +1,22 @@
 package core.BillyJiaMing;
 
+import core.CaveExplorer;
+
 public class BillyAi {
 
 	public static String[][] placeShip() {
 		//String[][] map = EventBillyJiaMing.botShip;
 		int rand1 = (int)(Math.random()*10 +1);
 		int rand2 = (int)(Math.random()*10 +1);
+		while(EventBillyJiaMing.botShip[rand1][rand2].equals("1")){
+			CaveExplorer.print("why u run");
+			rand1 = (int)(Math.random()*10 +1);
+			rand2 = (int)(Math.random()*10 +1);
+		}
 		EventBillyJiaMing.botShip[rand1][rand2] = "1";
 		int randDir = (int)(Math.random()*4 +1);
 		int num =1;
 		nextPos(randDir, rand1, rand2, num);
-		
-		/*
-		while(EventBillyJiaMing.botShip[rand1][rand2].equals("1")){
-			rand1 = (int)(Math.random()*10 +1);
-			rand2 = (int)(Math.random()*10 +1);
-		}
-		*/
 			
 		return EventBillyJiaMing.botShip;
 	}
