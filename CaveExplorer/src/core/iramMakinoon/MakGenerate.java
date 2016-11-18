@@ -1,7 +1,7 @@
 package core.iramMakinoon;
 
 public class MakGenerate {
-	public static int[][] magicSq = new int[3][3];
+	private static int[][] magicSq = new int[3][3];
 	static int[][] puzzles = new int[2][9];// arrays and their lengths
 	private int[] missingIndex = new int[3];
 
@@ -27,7 +27,13 @@ public class MakGenerate {
 		printPuzzle();
 		
 	}
-
+	public int[][] getPuzzle(){
+		return magicSq; 
+	}
+	public int[] getMissingIndex(){
+		return missingIndex; 
+		
+	}
 	public boolean isMissing(int row, int col) {
 		for (int j : missingIndex) {
 			if (j == (row * 3) + col) {
