@@ -6,17 +6,20 @@ public class BillyAi {
 
 	public static String[][] placeShip() {
 		//String[][] map = EventBillyJiaMing.botShip;
-		int rand1 = (int)(Math.random()*10 +1);
-		int rand2 = (int)(Math.random()*10 +1);
-		while(EventBillyJiaMing.botShip[rand1][rand2].equals("1")){
-			CaveExplorer.print("why u run");
-			rand1 = (int)(Math.random()*10 +1);
-			rand2 = (int)(Math.random()*10 +1);
+		//USE 2 FOR LOOPS 1 FOR SHIP SIZE 1 FOR PLACE AMOUNT OF X
+		for(int i=5;i>4;i--){
+			int rand1 = (int)(Math.random()*10 +1);
+			int rand2 = (int)(Math.random()*10 +1);
+			while(EventBillyJiaMing.botShip[rand1][rand2].equals("1")){
+				CaveExplorer.print("why u run");
+				rand1 = (int)(Math.random()*10 +1);
+				rand2 = (int)(Math.random()*10 +1);
+			}
+			EventBillyJiaMing.botShip[rand1][rand2] = "1";
+			int randDir = (int)(Math.random()*4 +1);
+			nextPos(randDir, rand1, rand2, i);
 		}
-		EventBillyJiaMing.botShip[rand1][rand2] = "1";
-		int randDir = (int)(Math.random()*4 +1);
-		int num =1;
-		nextPos(randDir, rand1, rand2, num);
+		
 			
 		return EventBillyJiaMing.botShip;
 	}
@@ -27,14 +30,14 @@ public class BillyAi {
 		int x = currX;
 		int y = currY;
 		if(randDir == 1 || randDir == 3){
-			if(currY-1>-1){
+			if(currY-count>-1){
 				y-= count;
 			}else{
 				y+= count;
 			}
 		}
 		if(randDir == 2 || randDir == 4){
-			if(currX-1>-1){
+			if(currX-count>-1){
 				x-= count;
 			}else{
 				x+= count;
