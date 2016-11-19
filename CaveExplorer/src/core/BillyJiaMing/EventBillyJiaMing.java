@@ -24,14 +24,14 @@ public class EventBillyJiaMing implements Event{
 		setSpace(userMap);
 		setSpace(botMap);
 		setSpace(botShip);
-		//userMap = JiaMingInput.placeShip();
-		BillyAi.placeShip();
+		JiaMingInput.placeShip();
+		//BillyAi.placeShip();
 		boolean inGame = true;
 		while(inGame){
 			//TEST REMOVE LATER
 			printArr(botShip);
 			printArr(botMap); // shows bot map
-			JiaMingInput.updateBotHit(); //user picks location and updates bot map with the new hits
+			//JiaMingInput.updateBotHit(); //user picks location and updates bot map with the new hits
 			BillyAi.updateUserHit();
 			printArr(userMap);
 			CaveExplorer.print(" - - - Press enter to continue - - - ");
