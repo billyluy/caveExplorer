@@ -102,7 +102,7 @@ public class JiaMingInput {
 		while(notValid){
 			while(!validCoord(shipLength)){
 				printUserMap();
-				System.out.println("Enter a valid coord \"(row,col)\"");
+				CaveExplorer.print("Enter a valid coord \"(row,col)\"");
 			}
 			EventBillyJiaMing.userMap[row][col]="O";
 			notValid=false;
@@ -212,10 +212,44 @@ public class JiaMingInput {
 		return true;  
 	}
 	
-	private static void updateBotHit() {
-		// TODO this returns coords of place user picks
-		//CHEAT CODE
-		//EventBillyJiaMing.userHit[1][1];
+	public static void updateBotHit() {
+		EventBillyJiaMing.printArr(EventBillyJiaMing.botMap);
+		CaveExplorer.print("This is the bot's map.");
+		CaveExplorer.print("Where do you wanna attack? Enter \"(row,col)\"");
+		while(!validAttackLoc()){
+			CaveExplorer.print("Invalid location, pick another location.\"(row,col)\"");
+		}
+		EventBillyJiaMing.botMap[row][col]="X";
+		EventBillyJiaMing.printArr(EventBillyJiaMing.botMap);
+		CaveExplorer.print("You hit the enemy at location ("+row+","+col+").");
+		if(EventBillyJiaMing.botShip[row][col].equals("O")){
+			EventBillyJiaMing.botShip[row][col]=" ";
+			CaveExplorer.print("Enemy ship hit at ("+row+","+col+").");
+		}else{
+			CaveExplorer.print("You did not hit any enemy ships.");
+		}
+		CaveExplorer.print("- - - Press Enter - - -");
+		CaveExplorer.in.nextLine();
+	}
+
+	private static boolean validAttackLoc() {
+		input=CaveExplorer.in.nextLine();
+		int commaIndex=input.indexOf(",");
+		int leftParaIndex=input.indexOf("(");
+		int rightParaIndex=input.indexOf(")");
+		if(commaIndex!=-1 && leftParaIndex!=-1 && rightParaIndex!=-1){
+			String row=input.substring(leftParaIndex+1, commaIndex);
+			String col=input.substring(commaIndex+1, rightParaIndex);
+			if(isNumber(row) && isNumber(col)){
+				changeRowCol(row,col);
+				if(JiaMingInput.row>=0 && JiaMingInput.row<=9 && JiaMingInput.col>=0 && JiaMingInput.col<=9){
+					if(EventBillyJiaMing.botMap[JiaMingInput.row][JiaMingInput.col].equals("X")){
+						return false;
+					}
+				}
+			}
+		}
+		return true;
 	}
 
 }
