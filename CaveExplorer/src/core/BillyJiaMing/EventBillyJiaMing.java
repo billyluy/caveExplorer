@@ -6,9 +6,10 @@ import core.Event;
 public class EventBillyJiaMing implements Event{
 	public static final String[] SEQ_1 = {"You have come across a puzzle.","You can't go on until you paly this game and beat the GHOST",
 			"The GHOST challenges you to a game of battleship, but with ghost instead of ships!!!"};
-	public static final String[] SEQ_2 = {"You have defeated the ghost in the puzzle","The door magically unlocks"
-			,"You are now free to go after you defeated the Ghost"};
-	public static final String[] SEQ_3 = {"The Ghost has defeated you","It seems the ghost is smarter than you"};
+	public static final String[] SEQ_2 = {"Ghost: NOOO you can't possibly have defeated me at my own game","You have defeated the ghost in the puzzle",
+			"The door magically unlocks","You are now free to go after you defeated the Ghost"};
+	public static final String[] SEQ_3 = {"Ghost: HEHE loser loser NOW GET OUT OF MY ROOM","The Ghost has defeated you",
+			"It seems the ghost is smarter than thought"};
 	
 	public static String[][] botShip = new String[10][10]; //bot ship location
 	public static String[][] userMap = new String[10][10]; //user ship location & bot hit location
