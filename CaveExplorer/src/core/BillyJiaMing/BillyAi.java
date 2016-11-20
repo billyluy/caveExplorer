@@ -99,6 +99,10 @@ public class BillyAi {
 	public static void updateUserHit() {
 		int rand1 = (int)(Math.random()*10);
 		int rand2 = (int)(Math.random()*10);
+		while(EventBillyJiaMing.userMap[rand1][rand2].equals("X")){
+			rand1 = (int)(Math.random()*10);
+			rand2 = (int)(Math.random()*10);
+		}
 		if(EventBillyJiaMing.userMap[rand1][rand2].equals("O")){
 			EventBillyJiaMing.userMap[rand1][rand2].equals("-");
 			CaveExplorer.print("Ghost:"+randomFromArray(hitRes));
