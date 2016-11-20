@@ -91,8 +91,40 @@ public class BillyAi {
 		}
 	}
 	public static void updateUserHit() {
-		// TODO Auto-generated method stub
-		
+		int rand1 = (int)(Math.random()*10);
+		int rand2 = (int)(Math.random()*10);
+		if(EventBillyJiaMing.userMap[rand1][rand2].equals("O")){
+			EventBillyJiaMing.userMap[rand1][rand2].equals("-");
+		}else{
+			EventBillyJiaMing.userMap[rand1][rand2].equals("X");
+		}
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
 
