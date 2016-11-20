@@ -1,24 +1,24 @@
 package core.BillyJiaMing;
 
-import core.CaveExplorer;
-
 public class BillyAi {
 
 	public static String[][] placeShip() {
-		//String[][] map = EventBillyJiaMing.botShip;
-		//USE 2 FOR LOOPS 1 FOR SHIP SIZE 1 FOR PLACE AMOUNT OF X
 		for(int i=2;i<6;i++){
 			int rand1 = (int)(Math.random()*10);
 			int rand2 = (int)(Math.random()*10);
 			int randDir = (int)(Math.random()*4 +1);
-			//validPos(i,rand1,rand2,randDir)
-			while(EventBillyJiaMing.botShip[rand1][rand2].equals("X")){
+			int loopCheck = -1;
+			while(EventBillyJiaMing.botShip[rand1][rand2].equals("O")||validPos(i,rand1,rand2,randDir)){
+				loopCheck++;
+				if(loopCheck>50){
+					break;
+				}
 				rand1 = (int)(Math.random()*10);
 				rand2 = (int)(Math.random()*10);
 			}
-			System.out.print(randDir+" ");
-			CaveExplorer.print(rand2+" "+rand1);
-			EventBillyJiaMing.botShip[rand1][rand2] = "X";
+			System.out.println(randDir+" ");
+			System.out.println(rand2+" "+rand1);
+			EventBillyJiaMing.botShip[rand1][rand2] = "O";
 			nextPos(randDir, rand1, rand2, i);
 		}
 		return EventBillyJiaMing.botShip;
@@ -26,14 +26,26 @@ public class BillyAi {
 
 
 	private static boolean validPos(int size, int rand1, int rand2,int dir) {
-		for(int i =0;i<size;i++){
-			if(dir ==1 &&EventBillyJiaMing.botShip[rand1-i][rand2].equals("X")){
+		System.out.print("here");
+		int dirPick = dir;
+		for(int i =1;i<size;i++){
+			if(dirPick ==1 && rand1-i<=-1){
+				dirPick =3;
+			}else if(dirPick ==2 &&rand2+i>=10){
+				dirPick =4;
+			}else if(dirPick ==3 &&rand1+i>=10){
+				dirPick =1;
+			}else if(dirPick==4 &&rand2-i<=-1){
+				dirPick =2;
+			}
+				
+			if(dirPick ==1 &&EventBillyJiaMing.botShip[rand1-i][rand2].equals("O")|| rand1-i<=-1){
 				return true;
-			}else if(dir ==2 &&EventBillyJiaMing.botShip[rand1][rand2+i].equals("X")){
+			}else if(dirPick ==2 &&EventBillyJiaMing.botShip[rand1][rand2+i].equals("O")|| rand2+i>=10){
 				return true;
-			}else if(dir ==3 &&EventBillyJiaMing.botShip[rand1+i][rand2].equals("X")){
+			}else if(dirPick ==3 &&EventBillyJiaMing.botShip[rand1+i][rand2].equals("O")|| rand1+i>=10){
 				return true;
-			}else if(dir ==4 &&EventBillyJiaMing.botShip[rand1][rand2-i].equals("X")){
+			}else if(dirPick ==4 &&EventBillyJiaMing.botShip[rand1][rand2-i].equals("O")|| rand2-i<=-1){
 				return true;
 			}
 		}
@@ -42,7 +54,6 @@ public class BillyAi {
 
 
 	private static void nextPos(int randDir, int currX, int currY, int count) {
-		//&& !EventBillyJiaMing.botShip[x][y--].equals("X")
 		int dirPick = randDir;
 		int x = currX;
 		int y = currY;
@@ -76,36 +87,11 @@ public class BillyAi {
 					dirPick = 2;
 				}
 			}
-			EventBillyJiaMing.botShip[x][y] = "X";
+			EventBillyJiaMing.botShip[x][y] = "O";
 		}
 	}
 	public static void updateUserHit() {
 		// TODO Auto-generated method stub
 		
 	}
-
-	/**
-	private static void nextPos(int currX, int currY) {
-		int x = currX;
-		int y = currY;
-		boolean inLoop =true;
-		while(inLoop){
-			int randDir = (int)(Math.random()*4 +1);
-			if(randDir == 1 && currY-1>-1){
-				y--;
-				break;
-			}else if(randDir ==2 && currX+1<10){
-				x++;
-				break;
-			}else if(randDir ==3 && currY+1<10){
-				y++;
-				break;
-			}else if(randDir ==4 && currX-1>1-1){
-				x--;
-				break;
-			}
-		}
-		EventBillyJiaMing.botShip[x][y] = "2";
-	}
-	 */
 }
