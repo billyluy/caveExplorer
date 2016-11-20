@@ -32,7 +32,8 @@ public class EventBillyJiaMing implements Event{
 		BillyAi.placeShip();
 		boolean inGame = true;
 		while(inGame){
-			printArr(botShip);
+			//Keep for testing
+			//printArr(botShip);
 			printArr(botMap);
 			JiaMingInput.updateBotHit();
 			BillyAi.updateUserHit();

@@ -16,8 +16,8 @@ public class BillyAi {
 				rand1 = (int)(Math.random()*10);
 				rand2 = (int)(Math.random()*10);
 			}
-			System.out.println(randDir+" ");
-			System.out.println(rand2+" "+rand1);
+//			System.out.println(randDir+" ");
+//			System.out.println(rand2+" "+rand1);
 			EventBillyJiaMing.botShip[rand1][rand2] = "O";
 			nextPos(randDir, rand1, rand2, i);
 		}
@@ -26,7 +26,6 @@ public class BillyAi {
 
 
 	private static boolean validPos(int size, int rand1, int rand2,int dir) {
-		System.out.print("here");
 		int dirPick = dir;
 		for(int i =1;i<size;i++){
 			if(dirPick ==1 && rand1-i<=-1){
@@ -99,32 +98,5 @@ public class BillyAi {
 			EventBillyJiaMing.userMap[rand1][rand2].equals("X");
 		}
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }
 
