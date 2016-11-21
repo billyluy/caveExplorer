@@ -30,7 +30,7 @@ public class EventBillyJiaMing implements Event{
 		setSpace(userMap);
 		setSpace(botMap);
 		setSpace(botShip);
-		//JiaMingInput.placeShip();
+		JiaMingInput.placeShip();
 		printArr(userMap);
 		CaveExplorer.print("This is where all your ships are");
 		CaveExplorer.print("- - - Press Enter - - -");
@@ -43,7 +43,6 @@ public class EventBillyJiaMing implements Event{
 		while(inGame){
 			JiaMingInput.updateBotMap();
 			BillyAi.updateUserHit();
-			printArr(userMap);
 			CaveExplorer.print("- - - Press Enter - - -");
 			CaveExplorer.in.nextLine();
 			if(noShip(botShip)){
