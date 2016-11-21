@@ -42,14 +42,14 @@ public class EventBillyJiaMing implements Event{
 			printArr(userMap);
 			CaveExplorer.print("- - - Press Enter - - -");
 			CaveExplorer.in.nextLine();
-//			if(noShip(userMap)){
-//				readSequence(SEQ_2);
-//				inGame = false;
-//			}
-//			else if (noShip(botShip)){
-//				readSequence(SEQ_3);
-//				inGame = false;
-//			}
+			if(noShip(userMap)){
+				readSequence(SEQ_2);
+				inGame = false;
+			}
+			else if (noShip(botShip)){
+				readSequence(SEQ_3);
+				inGame = false;
+			}
 			
 		}
 	}

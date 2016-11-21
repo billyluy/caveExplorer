@@ -220,7 +220,7 @@ public class JiaMingInput {
 			CaveExplorer.print("Invalid location, pick another location.\"(row,col)\"");
 		}
 		if(EventBillyJiaMing.botShip[row][col].equals("O")){
-			EventBillyJiaMing.botShip[row][col]="-";
+			EventBillyJiaMing.botMap[row][col]="-";
 			CaveExplorer.print("Enemy ship hit at ("+row+","+col+").");
 		}else{
 			EventBillyJiaMing.botMap[row][col]="X";
@@ -242,13 +242,13 @@ public class JiaMingInput {
 			if(isNumber(row) && isNumber(col)){
 				changeRowCol(row,col);
 				if(JiaMingInput.row>=0 && JiaMingInput.row<=9 && JiaMingInput.col>=0 && JiaMingInput.col<=9){
-					if(EventBillyJiaMing.botMap[JiaMingInput.row][JiaMingInput.col].equals("X")){
-						return false;
+					if(EventBillyJiaMing.botMap[JiaMingInput.row][JiaMingInput.col].equals("X")==false || EventBillyJiaMing.botMap[JiaMingInput.row][JiaMingInput.col].equals("-")==false){
+						return true;
 					}
 				}
 			}
 		}
-		return true;
+		return false;
 	}
 
 }
