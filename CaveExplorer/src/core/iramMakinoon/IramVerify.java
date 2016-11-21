@@ -33,7 +33,7 @@ public class IramVerify extends EventIramMakinoon{
 				check=false;
 			}
 			sum=0;
-			for(int i = 0, j = 2;j >= 0;i++,j--) {
+			for(int j = 2;j >= 0; j--) {
 				sum+= catchArray[i][j];
 			}
 			if(sum!=15) {

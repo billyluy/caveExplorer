@@ -1,6 +1,5 @@
 package core;
 
-
 public class CaveRoom {
 
 	private String description;
@@ -9,22 +8,21 @@ public class CaveRoom {
 	private String defaultContents;
 
 	private CaveRoom[] borderingRooms;
-	private Door[] doors; 
+	private Door[] doors;
 
 	public static final int NORTH = 0;
 	public static final int EAST = 1;
 	public static final int SOUTH = 2;
 	public static final int WEST = 3;
 
-
-	public CaveRoom(String description){
+	public CaveRoom(String description) {
 		this.description = description;
 		setDefaultContents(" ");
 		contents = defaultContents;
-		
+
 		borderingRooms = new CaveRoom[4];
 		doors = new Door[4];
-		for(int i = 0 ; i < borderingRooms.length; i++){
+		for (int i = 0; i < borderingRooms.length; i++) {
 			borderingRooms[i] = null;
 			doors[i] = null;
 		}
@@ -32,59 +30,57 @@ public class CaveRoom {
 	}
 
 	protected void setDirections() {
-		directions	= "";
-		//if all doors are null
-		if(doors[NORTH] == null && 
-				doors[EAST] == null &&
-				doors[SOUTH] == null &&
-				doors[WEST] == null){
-			directions = "\n\nThis is a room with no exit. You will die here.";		
-		}else{
-			for(int dir = 0; dir < doors.length; dir++){
-				if(doors[dir] != null){
-					directions += "\n   There is a "+doors[dir].getDescription()+" to "+toDirection(dir)+". "+doors[dir].getDetails();
+		directions = "";
+		// if all doors are null
+		if (doors[NORTH] == null && doors[EAST] == null && doors[SOUTH] == null && doors[WEST] == null) {
+			directions = "\n\nThis is a room with no exit. You will die here.";
+		} else {
+			for (int dir = 0; dir < doors.length; dir++) {
+				if (doors[dir] != null) {
+					directions += "\n   There is a " + doors[dir].getDescription() + " to " + toDirection(dir) + ". "
+							+ doors[dir].getDetails();
 				}
 			}
 		}
-	
+
 	}
 
 	private static String toDirection(int dir) {
-		String[] directions = {"the North", "the East","the South","the West"};
+		String[] directions = { "the North", "the East", "the South", "the West" };
 		return directions[dir];
 	}
 
-	public String getContents(){
+	public String getContents() {
 		return contents;
 	}
-	
-	public void enter(){
+
+	public void enter() {
 		contents = "X";
 	}
-	
-	public void leave(){
+
+	public void leave() {
 		contents = defaultContents;
 	}
-	
-	public void setDefaultContents(String symbol){
+
+	public void setDefaultContents(String symbol) {
 		defaultContents = symbol;
 	}
-	
 
-	public void addRoom(int direction, CaveRoom anotherRoom, Door door){
+	public void addRoom(int direction, CaveRoom anotherRoom, Door door) {
 		borderingRooms[direction] = anotherRoom;
 		doors[direction] = door;
 		setDirections();
 	}
-	
+
 	/**
-	 * Gives this room access to anotherRoom (and vice-versa) and
-	 * sets a door between them, and updates the directions
+	 * Gives this room access to anotherRoom (and vice-versa) and sets a door
+	 * between them, and updates the directions
+	 * 
 	 * @param direction
 	 * @param anotherRoom
 	 * @param door
 	 */
-	public void setConnection(int direction, CaveRoom anotherRoom, Door door){
+	public void setConnection(int direction, CaveRoom anotherRoom, Door door) {
 		addRoom(direction, anotherRoom, door);
 		anotherRoom.addRoom(oppositeDirection(direction), this, door);
 	}
@@ -94,62 +90,59 @@ public class CaveRoom {
 	 * @param dir
 	 * @return opposite direction of dir (NORTH returns SOUTH...)
 	 */
-	public static int oppositeDirection(int dir){
-		return (dir+2)%4;
+	public static int oppositeDirection(int dir) {
+		return (dir + 2) % 4;
 	}
 
-	
-	public String getDescription(){
-		return description+directions;
+	public String getDescription() {
+		return description + directions;
 	}
-	
-	public Door getDoor(int dir){
+
+	public Door getDoor(int dir) {
 		return doors[dir];
 	}
-
 
 	public void setDescription(String string) {
 		description = string;
 	}
 
 	public void interpretInput(String input) {
-		while(!isValid(input)){
+		while (!isValid(input)) {
 			System.out.println("You can only enter w,a,s,d");
 			input = CaveExplorer.in.nextLine();
 		}
-		String[] keys = {"w","d","s","a"};
+		String[] keys = { "w", "d", "s", "a" };
 		int indexFound = -1;
-		for(int i=0; i<keys.length; i++){
-			if(input.equals(keys[i])){
+		for (int i = 0; i < keys.length; i++) {
+			if (input.equals(keys[i])) {
 				indexFound = i;
 				break;
 			}
 		}
 		goToRoom(indexFound);
 	}
-	
-	public void goToRoom(int direction){
-		//MOVING INTO A NEW ROOM
-		if(borderingRooms[direction] != null && doors[direction].isOpen()){
-			//leave current room
+
+	public void goToRoom(int direction) {
+		// MOVING INTO A NEW ROOM
+		if (borderingRooms[direction] != null && doors[direction].isOpen()) {
+			// leave current room
 			CaveExplorer.currentRoom.leave();
-			//go to NEW room
+			// go to NEW room
 			CaveExplorer.currentRoom = borderingRooms[direction];
-			//enter NEW room
+			// enter NEW room
 			CaveExplorer.currentRoom.enter();
 			CaveExplorer.inventory.updateMap();
 		}
 	}
-	
+
 	private static boolean isValid(String input) {
 		String lc = input.toLowerCase();
-		String [] keys = {"w","a","s","d"};
-		for(String key:keys){
-			if(key.equals(lc))
+		String[] keys = { "w", "a", "s", "d" };
+		for (String key : keys) {
+			if (key.equals(lc))
 				return true;
 		}
 		return false;
 	}
 
 }
- 
