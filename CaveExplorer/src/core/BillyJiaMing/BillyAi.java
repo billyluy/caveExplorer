@@ -108,10 +108,24 @@ public class BillyAi {
 		if(EventBillyJiaMing.userMap[rand1][rand2].equals("O")){
 			EventBillyJiaMing.userMap[rand1][rand2]=("-");
 			CaveExplorer.print("Ghost:"+randomFromArray(hitRes));
+			boolean prevHit = true;
+			while(prevHit){
+				int randDir = (int)(Math.random()*4 +1);
+				if(randDir ==1 && rand1-1<=-1){
+					randDir =3;
+				}else if(randDir ==2 &&rand2+1>=10){
+					randDir =4;
+				}else if(randDir ==3 &&rand1+1>=10){
+					randDir =1;
+				}else if(randDir==4 &&rand2-1<=-1){
+					randDir =2;
+				}
+			}
 		}else{
 			EventBillyJiaMing.userMap[rand1][rand2]=("X");
 			CaveExplorer.print("Ghost:"+randomFromArray(missRes));
 		}
+		
 	}
 	
 	private static String randomFromArray(String[] array){
