@@ -23,11 +23,8 @@ public class JiaMingInput {
 		for(int i=0;i<shipTypes.length;i++){
 			printUserMap();
 			CaveExplorer.print("Where do you want to place your "+shipTypes[i]+"?");
-			CaveExplorer.print("Pick a coord by typing \"(row,col)\"");
 			pickACoord(shipLength[i]);
 			printUserMap();
-			CaveExplorer.print("That's a valid spot, now which direction do you want the ship to face in this spot?");
-			CaveExplorer.print("Enter \"up\",\"right\",\"down\", or \"left\"");
 			pickDirectionToPlace(shipLength[i]);			
 		}
 	}
@@ -37,6 +34,8 @@ public class JiaMingInput {
 	}
 
 	private static void pickDirectionToPlace(int shipLength) {
+		CaveExplorer.print("That's a valid spot, now which direction do you want the ship to face in this spot?");
+		CaveExplorer.print("Enter \"up\",\"right\",\"down\", or \"left\"");
 		while(!validDir()){
 			printUserMap();
 			CaveExplorer.print("Invalid dir.");
@@ -98,6 +97,7 @@ public class JiaMingInput {
 	}
 
 	private static void pickACoord(int shipLength) {
+		CaveExplorer.print("Pick a coord by typing \"(row,col)\"");
 		boolean notValid=true;
 		while(notValid){
 			while(!validCoord(shipLength)){
@@ -114,7 +114,7 @@ public class JiaMingInput {
 		for(int r=row;r<row+shipLength;r++){ //checks if there is space under of this coord
 			if(isOutOfBounds(shipLength,DOWN)){ 
 				dirAvailable[DOWN]=false;
-				break;
+				break; //added break for more efficiency, no need to go thru the whole loop
 			}else if(EventBillyJiaMing.userMap[r][col].equals("O")){
 				dirAvailable[DOWN]=false;
 				break;
@@ -219,15 +219,14 @@ public class JiaMingInput {
 		while(!validAttackLoc()){
 			CaveExplorer.print("Invalid location, pick another location.\"(row,col)\"");
 		}
-		EventBillyJiaMing.botMap[row][col]="X";
-		EventBillyJiaMing.printArr(EventBillyJiaMing.botMap);
-		CaveExplorer.print("You hit the enemy at location ("+row+","+col+").");
 		if(EventBillyJiaMing.botShip[row][col].equals("O")){
-			EventBillyJiaMing.botShip[row][col]=" ";
+			EventBillyJiaMing.botShip[row][col]="-";
 			CaveExplorer.print("Enemy ship hit at ("+row+","+col+").");
 		}else{
-			CaveExplorer.print("You did not hit any enemy ships.");
+			EventBillyJiaMing.botMap[row][col]="X";
+			CaveExplorer.print("You did not hit any enemy ships at ("+row+","+col+").");
 		}
+		EventBillyJiaMing.printArr(EventBillyJiaMing.botMap);
 		CaveExplorer.print("- - - Press Enter - - -");
 		CaveExplorer.in.nextLine();
 	}

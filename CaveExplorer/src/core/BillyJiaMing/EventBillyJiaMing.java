@@ -14,6 +14,7 @@ public class EventBillyJiaMing implements Event{
 	public static String[][] botShip = new String[10][10]; //bot ship location
 	public static String[][] userMap = new String[10][10]; //user ship location & bot hit location
 	public static String[][] botMap = new String[10][10]; //user hit location
+	
 	public void play() {
 		readSequence(SEQ_1);
 		CaveExplorer.print("Will you battle the ghost");
@@ -35,20 +36,20 @@ public class EventBillyJiaMing implements Event{
 		while(inGame){
 			//Keep for testing
 			//printArr(botShip);
-			printArr(botMap);
+			//printArr(botMap);
 			JiaMingInput.updateBotHit();
 			BillyAi.updateUserHit();
 			printArr(userMap);
 			CaveExplorer.print("- - - Press Enter - - -");
 			CaveExplorer.in.nextLine();
-			if(noShip(userMap)){
-				readSequence(SEQ_2);
-				inGame = false;
-			}
-			else if (noShip(botShip)){
-				readSequence(SEQ_3);
-				inGame = false;
-			}
+//			if(noShip(userMap)){
+//				readSequence(SEQ_2);
+//				inGame = false;
+//			}
+//			else if (noShip(botShip)){
+//				readSequence(SEQ_3);
+//				inGame = false;
+//			}
 			
 		}
 	}

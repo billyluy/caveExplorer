@@ -28,6 +28,8 @@ public class BillyAi {
 			nextPos(randDir, rand1, rand2, i);
 		}
 		CaveExplorer.print("Ghost: I have placed my ships, here we go");
+		CaveExplorer.print("- - - Press Enter - - -");
+		CaveExplorer.in.nextLine();
 		return EventBillyJiaMing.botShip;
 	}
 
@@ -104,10 +106,10 @@ public class BillyAi {
 			rand2 = (int)(Math.random()*10);
 		}
 		if(EventBillyJiaMing.userMap[rand1][rand2].equals("O")){
-			EventBillyJiaMing.userMap[rand1][rand2].equals("-");
+			EventBillyJiaMing.userMap[rand1][rand2]=("-");
 			CaveExplorer.print("Ghost:"+randomFromArray(hitRes));
 		}else{
-			EventBillyJiaMing.userMap[rand1][rand2].equals("X");
+			EventBillyJiaMing.userMap[rand1][rand2]=("X");
 			CaveExplorer.print("Ghost:"+randomFromArray(missRes));
 		}
 	}
