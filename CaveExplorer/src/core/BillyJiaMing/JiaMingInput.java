@@ -29,6 +29,25 @@ public class JiaMingInput {
 		}
 	}
 	
+	public static void updateBotMap() {
+		EventBillyJiaMing.printArr(EventBillyJiaMing.botMap);
+		CaveExplorer.print("This is the bot's map.");
+		CaveExplorer.print("Where do you wanna attack? Enter \"(row,col)\"");
+		while(!validAttackLoc()){
+			CaveExplorer.print("Invalid location, pick another location.\"(row,col)\"");
+		}
+		if(EventBillyJiaMing.botShip[row][col].equals("O")){
+			EventBillyJiaMing.botMap[row][col]="-";
+			CaveExplorer.print("Enemy ship hit at ("+row+","+col+").");
+		}else{
+			EventBillyJiaMing.botMap[row][col]="X";
+			CaveExplorer.print("You did not hit any enemy ships at ("+row+","+col+").");
+		}
+		EventBillyJiaMing.printArr(EventBillyJiaMing.botMap);
+		CaveExplorer.print("- - - Press Enter - - -");
+		CaveExplorer.in.nextLine();
+	}
+	
 	private static void printUserMap() {
 		EventBillyJiaMing.printArr(EventBillyJiaMing.userMap);
 	}
@@ -98,16 +117,12 @@ public class JiaMingInput {
 
 	private static void pickACoord(int shipLength) {
 		CaveExplorer.print("Pick a coord by typing \"(row,col)\"");
-		boolean notValid=true;
-		while(notValid){
 			while(!validCoord(shipLength)){
 				printUserMap();
 				CaveExplorer.print("Enter a valid coord \"(row,col)\"");
 			}
 			EventBillyJiaMing.userMap[row][col]="O";
-			notValid=false;
 		}
-	}
 
 	private static boolean coordNotTaken(int shipLength) {
 		dirAvailable= new boolean[]{true,true,true,true};
@@ -184,7 +199,7 @@ public class JiaMingInput {
 		int commaIndex=input.indexOf(",");
 		int leftParaIndex=input.indexOf("(");
 		int rightParaIndex=input.indexOf(")");
-		if(commaIndex!=-1 && leftParaIndex!=-1 && rightParaIndex!=-1){
+		if(commaIndex>leftParaIndex && rightParaIndex>commaIndex){
 			String row=input.substring(leftParaIndex+1, commaIndex);
 			String col=input.substring(commaIndex+1, rightParaIndex);
 			if(isNumber(row) && isNumber(col)){
@@ -211,32 +226,13 @@ public class JiaMingInput {
 		}  
 		return true;  
 	}
-	
-	public static void updateBotHit() {
-		EventBillyJiaMing.printArr(EventBillyJiaMing.botMap);
-		CaveExplorer.print("This is the bot's map.");
-		CaveExplorer.print("Where do you wanna attack? Enter \"(row,col)\"");
-		while(!validAttackLoc()){
-			CaveExplorer.print("Invalid location, pick another location.\"(row,col)\"");
-		}
-		if(EventBillyJiaMing.botShip[row][col].equals("O")){
-			EventBillyJiaMing.botMap[row][col]="-";
-			CaveExplorer.print("Enemy ship hit at ("+row+","+col+").");
-		}else{
-			EventBillyJiaMing.botMap[row][col]="X";
-			CaveExplorer.print("You did not hit any enemy ships at ("+row+","+col+").");
-		}
-		EventBillyJiaMing.printArr(EventBillyJiaMing.botMap);
-		CaveExplorer.print("- - - Press Enter - - -");
-		CaveExplorer.in.nextLine();
-	}
 
 	private static boolean validAttackLoc() {
 		input=CaveExplorer.in.nextLine();
 		int commaIndex=input.indexOf(",");
 		int leftParaIndex=input.indexOf("(");
 		int rightParaIndex=input.indexOf(")");
-		if(commaIndex!=-1 && leftParaIndex!=-1 && rightParaIndex!=-1){
+		if(commaIndex>leftParaIndex && rightParaIndex>commaIndex){
 			String row=input.substring(leftParaIndex+1, commaIndex);
 			String col=input.substring(commaIndex+1, rightParaIndex);
 			if(isNumber(row) && isNumber(col)){

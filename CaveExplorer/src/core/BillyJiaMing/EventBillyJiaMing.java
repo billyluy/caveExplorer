@@ -8,7 +8,7 @@ public class EventBillyJiaMing implements Event{
 			"The GHOST challenges you to a game of battleship, but with ghost instead of ships!!!"};
 	public static final String[] SEQ_2 = {"Ghost: NOOO you can't possibly have defeated me at my own game","You have defeated the ghost in the puzzle",
 			"The door magically unlocks","You are now free to go after you defeated the Ghost"};
-	public static final String[] SEQ_3 = {"Ghost: HEHE loser loser NOW GET OUT OF MY ROOM","The Ghost has defeated you",
+	public static final String[] SEQ_3 = {"Ghost: HEHE loser loser, NOW GET OUT OF MY ROOM","The Ghost has defeated you",
 			"It seems the ghost is smarter than thought"};
 	
 	public static String[][] botShip = new String[10][10]; //bot ship location
@@ -17,36 +17,40 @@ public class EventBillyJiaMing implements Event{
 	
 	public void play() {
 		readSequence(SEQ_1);
-		CaveExplorer.print("Will you battle the ghost");
+		CaveExplorer.print("Will you battle the ghost?");
 		if(CaveExplorer.in.nextLine().indexOf("yes")>-1){
-			CaveExplorer.print("GAME STARTED");
-		}else{ /*fix for other in*/
-			CaveExplorer.print("TOO BAD IDC, You have nowhere else to go and you must battle him");
+			CaveExplorer.print("Good luck.");
+			CaveExplorer.print("- - - Press Enter - - -");
+			CaveExplorer.in.nextLine();
+		}else{
+			CaveExplorer.print("Too bad, you have nowhere else to go and you must battle him");
+			CaveExplorer.print("- - - Press Enter - - -");
+			CaveExplorer.in.nextLine();
 		}
 		setSpace(userMap);
 		setSpace(botMap);
 		setSpace(botShip);
-		JiaMingInput.placeShip();
+		//JiaMingInput.placeShip();
 		printArr(userMap);
 		CaveExplorer.print("This is where all your ships are");
 		CaveExplorer.print("- - - Press Enter - - -");
 		CaveExplorer.in.nextLine();
 		BillyAi.placeShip();
+		CaveExplorer.print("You may skip the game anytime by typing the cheat code while ingame");
+		CaveExplorer.print("- - - Press Enter - - -");
+		CaveExplorer.in.nextLine();
 		boolean inGame = true;
 		while(inGame){
-			//Keep for testing
-			//printArr(botShip);
-			//printArr(botMap);
-			JiaMingInput.updateBotHit();
+			JiaMingInput.updateBotMap();
 			BillyAi.updateUserHit();
 			printArr(userMap);
 			CaveExplorer.print("- - - Press Enter - - -");
 			CaveExplorer.in.nextLine();
-			if(noShip(userMap)){
+			if(noShip(botShip)){
 				readSequence(SEQ_2);
 				inGame = false;
 			}
-			else if (noShip(botShip)){
+			else if (noShip(userMap)){
 				readSequence(SEQ_3);
 				inGame = false;
 			}
