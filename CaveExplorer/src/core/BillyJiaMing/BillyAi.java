@@ -99,7 +99,7 @@ public class BillyAi {
 		}
 	}
 	public static void updateUserHit() {
-		boolean myTurn = true;    
+		boolean myTurn = true;
 		boolean prevHit = false;
 		int prevRand1 = -1;
 		int prevRand2 = -1;
