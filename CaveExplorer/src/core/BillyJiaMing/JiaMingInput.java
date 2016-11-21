@@ -37,6 +37,7 @@ public class JiaMingInput {
 		}
 		if(EventBillyJiaMing.botShip[row][col].equals("O")){
 			EventBillyJiaMing.botMap[row][col]="-";
+			EventBillyJiaMing.botShip[row][col]=" ";
 			EventBillyJiaMing.printArr(EventBillyJiaMing.botMap);
 			CaveExplorer.print("Enemy ship hit at ("+row+","+col+").");
 			attackAgain();
@@ -178,22 +179,22 @@ public class JiaMingInput {
 	}
 	private static boolean isOutOfBounds(int shipLength, int dir) {
 		if(dir==DOWN){
-			if(row+shipLength>9){
+			if(row+shipLength>10){
 				return true;
 			}
 		}
 		if(dir==UP){
-			if(row-shipLength<0){
+			if(row-shipLength<-1){
 				return true;
 			}
 		}
 		if(dir==LEFT){
-			if(col-shipLength<0){
+			if(col-shipLength<-1){
 				return true;
 			}
 		}
 		if(dir==RIGHT){
-			if(col+shipLength>9){
+			if(col+shipLength>10){
 				return true;
 			}
 		}
