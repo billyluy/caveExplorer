@@ -5,7 +5,7 @@ import core.CaveExplorer;
 public class BillyAi {
 	
 	private static String[] hitRes = {"HAHAHA, I have hit your ship","LOOK, down it goes", "You see that shot, you can't possibly beat me","Another one"};
-	private static String[] missRes = {"HMM, you got lucky this time","I can't possibly lose!!!","Not like this","NOOOO","I'll get one of yours",
+	private static String[] missRes = {"HMM, you got lucky this time","Not like this","NOOOO","I'll get one of yours",
 			"You seem better than you look"};
 
 	public static String[][] placeShip() {
