@@ -22,7 +22,7 @@ public class CaveExplorer {
 			}
 		}
 
-		caves[1][2] = new EventRoom("ship", new EventBillyJiaMing());
+		caves[1][2] = new EventRoom("This is the room where you battled the ghost to battleship.", new EventBillyJiaMing());
 		caves[3][2] = new EventRoom("magicsquare", new EventIramMakinoon());
 		caves[2][3] = new EventRoom("pacman", new PacmanEvent());
 
