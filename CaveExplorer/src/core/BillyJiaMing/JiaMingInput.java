@@ -18,8 +18,7 @@ public class JiaMingInput {
 		int[] shipLength={5,4,3,2};
 		String[] shipTypes={"Carrier(Length 5)","Battleship(Length 4)","Submarine(Length 3)","Destroyer(Length 2)"};
 		CaveExplorer.print("It's time to place your 4 ships.");
-		CaveExplorer.print("- - - Press Enter - - -");
-		input=CaveExplorer.in.nextLine();
+		pressEnter();
 		for(int i=0;i<shipTypes.length;i++){
 			printUserMap();
 			CaveExplorer.print("Where do you want to place your "+shipTypes[i]+"?");
@@ -38,16 +37,23 @@ public class JiaMingInput {
 		}
 		if(EventBillyJiaMing.botShip[row][col].equals("O")){
 			EventBillyJiaMing.botMap[row][col]="-";
+			EventBillyJiaMing.printArr(EventBillyJiaMing.botMap);
 			CaveExplorer.print("Enemy ship hit at ("+row+","+col+").");
+			attackAgain();
 		}else{
 			EventBillyJiaMing.botMap[row][col]="X";
 			CaveExplorer.print("You did not hit any enemy ships at ("+row+","+col+").");
+			EventBillyJiaMing.printArr(EventBillyJiaMing.botMap);
+			pressEnter();
 		}
-		EventBillyJiaMing.printArr(EventBillyJiaMing.botMap);
-		CaveExplorer.print("- - - Press Enter - - -");
-		CaveExplorer.in.nextLine();
 	}
 	
+	private static void attackAgain() {
+		CaveExplorer.print("You get to hit again.");
+		pressEnter();
+		updateBotMap();
+	}
+
 	private static void printUserMap() {
 		EventBillyJiaMing.printArr(EventBillyJiaMing.userMap);
 	}
@@ -246,5 +252,8 @@ public class JiaMingInput {
 		}
 		return false;
 	}
-
+	private static void pressEnter(){
+		CaveExplorer.print("- - - Press Enter - - -");
+		CaveExplorer.in.nextLine();
+	}
 }
