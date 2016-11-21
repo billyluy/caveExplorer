@@ -99,31 +99,44 @@ public class BillyAi {
 		}
 	}
 	public static void updateUserHit() {
-		int rand1 = (int)(Math.random()*10);
-		int rand2 = (int)(Math.random()*10);
-		while(EventBillyJiaMing.userMap[rand1][rand2].equals("X")){
-			rand1 = (int)(Math.random()*10);
-			rand2 = (int)(Math.random()*10);
-		}
-		if(EventBillyJiaMing.userMap[rand1][rand2].equals("O")){
-			EventBillyJiaMing.userMap[rand1][rand2]=("-");
-			CaveExplorer.print("Ghost:"+randomFromArray(hitRes));
-// 			boolean prevHit = true;
-// 			while(prevHit){
-// 				int randDir = (int)(Math.random()*4 +1);
-// 				if(randDir ==1 && rand1-1<=-1){
-// 					randDir =3;
-// 				}else if(randDir ==2 &&rand2+1>=10){
-// 					randDir =4;
-// 				}else if(randDir ==3 &&rand1+1>=10){
-// 					randDir =1;
-// 				}else if(randDir==4 &&rand2-1<=-1){
-// 					randDir =2;
-// 				}
-// 			}
-		}else{
-			EventBillyJiaMing.userMap[rand1][rand2]=("X");
-			CaveExplorer.print("Ghost:"+randomFromArray(missRes));
+		boolean myTurn = true;
+		boolean prevHit = false;
+		int prevRand1 = -1;
+		int prevRand2 = -1;
+		while(myTurn){
+			int rand1 = (int)(Math.random()*10);
+			int rand2 = (int)(Math.random()*10);
+			while(prevHit){
+				int randDir = (int)(Math.random()*4 +1);
+				if(randDir ==1 && rand1-1>-1){
+					rand1=prevRand1--;
+					break;
+				}else if(randDir ==2 &&rand2+1>=10){
+					rand2=prevRand2++;
+					break;
+				}else if(randDir ==3 &&rand1+1>=10){
+					rand1=prevRand1++;
+					break;
+				}else if(randDir==4 &&rand2-1<=-1){
+					rand2=prevRand2--;
+					break;
+				}
+			}
+			while(EventBillyJiaMing.userMap[rand1][rand2].equals("X")||EventBillyJiaMing.userMap[rand1][rand2].equals("-")){
+				rand1 = (int)(Math.random()*10);
+				rand2 = (int)(Math.random()*10);
+			}
+			if(EventBillyJiaMing.userMap[rand1][rand2].equals("O")){
+				EventBillyJiaMing.userMap[rand1][rand2]=("-");
+				CaveExplorer.print("Ghost:"+randomFromArray(hitRes));
+				prevRand1=rand1;
+				prevRand2=rand2;
+				prevHit =true;
+			}else{
+				EventBillyJiaMing.userMap[rand1][rand2]=("X");
+				CaveExplorer.print("Ghost:"+randomFromArray(missRes));
+				myTurn =false;
+			}
 		}
 		
 	}
