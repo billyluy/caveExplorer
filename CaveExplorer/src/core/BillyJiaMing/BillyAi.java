@@ -10,11 +10,13 @@ public class BillyAi {
 
 	public static String[][] placeShip() {
 		for(int i=2;i<6;i++){
+			//gen random coords and direction to place ship
 			int rand1 = (int)(Math.random()*10);
 			int rand2 = (int)(Math.random()*10);
 			int randDir = (int)(Math.random()*4 +1);
 			int loopCheck = -1;
 			while(EventBillyJiaMing.botShip[rand1][rand2].equals("O")||validPos(i,rand1,rand2,randDir)){
+				//backup in case stuck
 				loopCheck++;
 				if(loopCheck>50){
 					break;
@@ -22,8 +24,6 @@ public class BillyAi {
 				rand1 = (int)(Math.random()*10);
 				rand2 = (int)(Math.random()*10);
 			}
-//			System.out.println(randDir+" ");
-//			System.out.println(rand2+" "+rand1);
 			EventBillyJiaMing.botShip[rand1][rand2] = "O";
 			nextPos(randDir, rand1, rand2, i);
 		}
@@ -35,6 +35,7 @@ public class BillyAi {
 
 
 	private static boolean validPos(int size, int rand1, int rand2,int dir) {
+		//check if any ships are already placed in a certain direction
 		int dirPick = dir;
 		for(int i =1;i<size;i++){
 			if(dirPick ==1 && rand1-i<=-1){
@@ -46,7 +47,7 @@ public class BillyAi {
 			}else if(dirPick==4 &&rand2-i<=-1){
 				dirPick =2;
 			}
-				
+			//check if a valid place position(out of bounds or already occupied)	
 			if(dirPick ==1 &&EventBillyJiaMing.botShip[rand1-i][rand2].equals("O")|| rand1-i<=-1){
 				return true;
 			}else if(dirPick ==2 &&EventBillyJiaMing.botShip[rand1][rand2+i].equals("O")|| rand2+i>=10){
@@ -62,14 +63,18 @@ public class BillyAi {
 
 
 	private static void nextPos(int randDir, int currX, int currY, int count) {
+		//place ships in a straight line
+		//able to place behind if ahead is already occupied or is border of map
 		int dirPick = randDir;
 		int x = currX;
 		int y = currY;
+		//place ships one by one
 		for(int i = count-1; i>0;i--){
 			if(dirPick ==1){
 				if(x-1>-1){
 					x-= 1;
 				}else{
+					//change direction if border of map
 					x+=(x+currX)+1;
 					dirPick = 3;
 				}
@@ -100,14 +105,27 @@ public class BillyAi {
 	}
 	public static void updateUserHit() {
 		boolean myTurn = true;
-		boolean prevHit = false;
+		boolean hitAdja = false;
 		int prevRand1 = -1;
 		int prevRand2 = -1;
+		int prevDir = -1;
+		int count =0;
 		while(myTurn){
 			int rand1 = (int)(Math.random()*10);
 			int rand2 = (int)(Math.random()*10);
-			while(prevHit){
+			if(count >=4){
+				hitAdja =false;
+				count =0;
+			}
+			while(hitAdja){
+				count++;
 				int randDir = (int)(Math.random()*4 +1);
+//				prevDir = randDir;
+//				if(!(prevDir==-1)){
+//					if(prevDir==1){
+//						
+//					}
+//				}
 				if(randDir ==1 && prevRand1-1>-1){
 					rand1 = prevRand1-1;
 					break;
@@ -135,7 +153,7 @@ public class BillyAi {
 				CaveExplorer.in.nextLine();
 				prevRand1=rand1;
 				prevRand2=rand2;
-				prevHit =true;
+				hitAdja =true;
 			}else{
 				EventBillyJiaMing.userMap[rand1][rand2]=("X");
 				CaveExplorer.print("Ghost:"+randomFromArray(missRes));
