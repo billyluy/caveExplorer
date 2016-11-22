@@ -108,7 +108,7 @@ public class BillyAi {
 		boolean hitAdja = false;
 		int prevRand1 = -1;
 		int prevRand2 = -1;
-		int prevDir = -1;
+//		int prevDir = -1;
 		int count =0;
 		while(myTurn){
 			int rand1 = (int)(Math.random()*10);
