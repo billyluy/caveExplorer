@@ -1,6 +1,7 @@
 package core.iramMakinoon;
 
 import java.util.Scanner;
+
 //
 public class MakInput extends EventIramMakinoon {
 
@@ -12,41 +13,27 @@ public class MakInput extends EventIramMakinoon {
 
 	private boolean correct;
 
-	public MakInput(MakGenerate gen, int[][] puzzle, int[] captureIndex) {
+	public MakInput(int[][] puzzle, int[] captureIndex) {
 
 		this.puzzle = puzzle;
 
 		this.captureIndex = captureIndex;
 
-		boolean c = false;
+		int numA = interpretResponse("a");
 
-		while (!c) {
-			int numA = interpretResponse("a");
+		int numB = interpretResponse("b");
 
-			int numB = interpretResponse("b");
+		int numC = interpretResponse("c");
 
-			int numC = interpretResponse("c");
+		int[][] catchArray = getArray(numA, numB, numC);
 
-			int[][] catchArray = getArray(numA, numB, numC);
+		IramVerify verify = new IramVerify(catchArray);
 
-			IramVerify verify = new IramVerify(catchArray);
+		correct = verify.getCheck();
 
-			
-			
-			
-			
-			
-			c = correct = verify.getCheck();
+		// System.out.println(getCorrect());
 
-			//System.out.println(getCorrect());
-
-			print(catchArray);
-			
-			if (!c) {
-				System.out.println("YOU ARE WRONG. TRY AGAIN.");
-				gen.printPuzzle();
-			}
-		}
+		print(catchArray);
 
 	}
 
