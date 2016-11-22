@@ -2,16 +2,23 @@ package core.iramMakinoon;
 
 public class MakGenerate {
 	private static int[][] magicSq = new int[3][3];
-	static int[][] puzzles = new int[2][9];// arrays and their lengths
+	static int[][] puzzles = new int[5][9];// arrays and their lengths
 	private int[] missingIndex = new int[3];
 
 	static int[] Array1 = { 4, 9, 2, 3, 5, 7, 8, 1, 6 };
 	static int[] Array2 = { 8, 3, 4, 1, 5, 9, 6, 7, 2 };
+	static int[] Array3 = { 2, 7, 6, 9, 5, 1, 4, 3, 8 };
+	static int[] Array4 = { 6, 1, 8, 7, 5, 3, 2, 9, 4 };
+	static int[] Array5 = { 2, 9, 4, 7, 5, 3, 6, 1, 8 };
 
 	public MakGenerate() {
 
 		puzzles[0] = Array1;
 		puzzles[1] = Array2;
+		puzzles[2] = Array3;
+		puzzles[3] = Array4;
+		puzzles[4] = Array5;
+		
 		int rand = (int) (Math.random() * puzzles.length);// randomize the
 															// puzzles
 
