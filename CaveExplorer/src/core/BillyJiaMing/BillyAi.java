@@ -104,63 +104,64 @@ public class BillyAi {
 		}
 	}
 	public static void updateUserHit() {
-		boolean myTurn = true;
-		boolean hitAdja = false;
-		int prevRand1 = -1;
-		int prevRand2 = -1;
-		int prevDir = -1;
-		int count =0;
-		while(myTurn){
-			int rand1 = (int)(Math.random()*10);
-			int rand2 = (int)(Math.random()*10);
-			if(count >=4){
-				hitAdja =false;
-				count =0;
-			}
-			while(hitAdja){
-				count++;
-				int randDir = (int)(Math.random()*4 +1);
-//				prevDir = randDir;
-//				if(!(prevDir==-1)){
-//					if(prevDir==1){
-//						
-//					}
-//				}
-				if(randDir ==1 && prevRand1-1>-1){
-					rand1 = prevRand1-1;
-					break;
-				}else if(randDir ==2 &&prevRand2+1<10){
-					rand2 = prevRand2+1;
-					break;
-				}else if(randDir ==3 &&prevRand1+1<10){
-					rand1 = prevRand1+1;
-					break;
-				}else if(randDir==4 &&prevRand2-1>-1){
-					rand2 = prevRand2-1;
-					break;
+		if(EventBillyJiaMing.inGame){
+			boolean myTurn = true;
+			boolean hitAdja = false;
+			int prevRand1 = -1;
+			int prevRand2 = -1;
+			int prevDir = -1;
+			int count =0;
+			while(myTurn){
+				int rand1 = (int)(Math.random()*10);
+				int rand2 = (int)(Math.random()*10);
+				if(count >=4){
+					hitAdja =false;
+					count =0;
+				}
+				while(hitAdja){
+					count++;
+					int randDir = (int)(Math.random()*4 +1);
+	//				prevDir = randDir;
+	//				if(!(prevDir==-1)){
+	//					if(prevDir==1){
+	//						
+	//					}
+	//				}
+					if(randDir ==1 && prevRand1-1>-1){
+						rand1 = prevRand1-1;
+						break;
+					}else if(randDir ==2 &&prevRand2+1<10){
+						rand2 = prevRand2+1;
+						break;
+					}else if(randDir ==3 &&prevRand1+1<10){
+						rand1 = prevRand1+1;
+						break;
+					}else if(randDir==4 &&prevRand2-1>-1){
+						rand2 = prevRand2-1;
+						break;
+					}
+				}
+				while(EventBillyJiaMing.userMap[rand1][rand2].equals("X")||EventBillyJiaMing.userMap[rand1][rand2].equals("-")){
+					rand1 = (int)(Math.random()*10);
+					rand2 = (int)(Math.random()*10);
+				}
+				if(EventBillyJiaMing.userMap[rand1][rand2].equals("O")){
+					EventBillyJiaMing.userMap[rand1][rand2]=("-");
+					CaveExplorer.print("Ghost:"+randomFromArray(hitRes));
+					EventBillyJiaMing.printArr(EventBillyJiaMing.userMap);
+					CaveExplorer.print("- - - Press Enter - - -");
+					CaveExplorer.in.nextLine();
+					prevRand1=rand1;
+					prevRand2=rand2;
+					hitAdja =true;
+				}else{
+					EventBillyJiaMing.userMap[rand1][rand2]=("X");
+					CaveExplorer.print("Ghost:"+randomFromArray(missRes));
+					EventBillyJiaMing.printArr(EventBillyJiaMing.userMap);
+					myTurn =false;
 				}
 			}
-			while(EventBillyJiaMing.userMap[rand1][rand2].equals("X")||EventBillyJiaMing.userMap[rand1][rand2].equals("-")){
-				rand1 = (int)(Math.random()*10);
-				rand2 = (int)(Math.random()*10);
-			}
-			if(EventBillyJiaMing.userMap[rand1][rand2].equals("O")){
-				EventBillyJiaMing.userMap[rand1][rand2]=("-");
-				CaveExplorer.print("Ghost:"+randomFromArray(hitRes));
-				EventBillyJiaMing.printArr(EventBillyJiaMing.userMap);
-				CaveExplorer.print("- - - Press Enter - - -");
-				CaveExplorer.in.nextLine();
-				prevRand1=rand1;
-				prevRand2=rand2;
-				hitAdja =true;
-			}else{
-				EventBillyJiaMing.userMap[rand1][rand2]=("X");
-				CaveExplorer.print("Ghost:"+randomFromArray(missRes));
-				EventBillyJiaMing.printArr(EventBillyJiaMing.userMap);
-				myTurn =false;
-			}
 		}
-		
 	}
 	
 	private static String randomFromArray(String[] array){

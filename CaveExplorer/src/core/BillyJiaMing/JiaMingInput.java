@@ -222,8 +222,8 @@ public class JiaMingInput {
 		int leftParaIndex=input.indexOf("(");
 		int rightParaIndex=input.indexOf(")");
 		if(commaIndex>leftParaIndex && rightParaIndex>commaIndex){
-			String row=input.substring(leftParaIndex+1, commaIndex);
-			String col=input.substring(commaIndex+1, rightParaIndex);
+			String row=input.substring(leftParaIndex+1, commaIndex).trim();
+			String col=input.substring(commaIndex+1, rightParaIndex).trim();
 			if(isNumber(row) && isNumber(col)){
 				changeRowCol(row,col);
 				if(JiaMingInput.row>=0 && JiaMingInput.row<=9 && JiaMingInput.col>=0 && JiaMingInput.col<=9){
@@ -233,20 +233,14 @@ public class JiaMingInput {
 		}
 		return false;
 	}
-	
+
 	private static void changeRowCol(String sRow, String sCol) {
 		row=Integer.parseInt(sRow);
 		col=Integer.parseInt(sCol);
 	}
-	
+
 	private static boolean isNumber(String str){
-		try{  
-			double d = Double.parseDouble(str);  
-		}  
-		catch(NumberFormatException err){ //if try statement returns this error, then return false 
-		    return false;  
-		}  
-		return true;  
+		return str.matches("[0-9]");  
 	}
 
 	private static boolean validAttackLoc() {
@@ -258,8 +252,8 @@ public class JiaMingInput {
 		int leftParaIndex=input.indexOf("(");
 		int rightParaIndex=input.indexOf(")");
 		if(commaIndex>leftParaIndex && rightParaIndex>commaIndex){
-			String row=input.substring(leftParaIndex+1, commaIndex);
-			String col=input.substring(commaIndex+1, rightParaIndex);
+			String row=input.substring(leftParaIndex+1, commaIndex).trim();
+			String col=input.substring(commaIndex+1, rightParaIndex).trim();
 			if(isNumber(row) && isNumber(col)){
 				changeRowCol(row,col);
 				if(JiaMingInput.row>=0 && JiaMingInput.row<=9 && JiaMingInput.col>=0 && JiaMingInput.col<=9){

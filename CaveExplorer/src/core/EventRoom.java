@@ -22,4 +22,8 @@ public class EventRoom extends CaveRoom {
 		}
 	}
 
+	public boolean occured() {
+		return eventOccured;
+	}
+	
 }
