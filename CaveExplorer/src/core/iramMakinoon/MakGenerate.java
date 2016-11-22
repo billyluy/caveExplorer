@@ -27,7 +27,7 @@ public class MakGenerate {
 		printPuzzle();
 		
 	}
-	public int[][] getPuzzle(){
+	public static int[][] getPuzzle(){
 		return magicSq; 
 	}
 	public int[] getMissingIndex(){
@@ -43,10 +43,10 @@ public class MakGenerate {
 
 		return false;
 	}
-	
+	//
 	
 
-	public void printPuzzle( ) {
+	public void printPuzzle() {
 		String[] letters = {"a", "b", "c"};
 		int count = 0;
 		for (int row = 0; row < magicSq.length; row++) {
