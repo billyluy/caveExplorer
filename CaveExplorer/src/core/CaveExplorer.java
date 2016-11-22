@@ -3,7 +3,7 @@ package core;
 import java.util.Scanner;
 
 import core.BillyJiaMing.EventBillyJiaMing;
-import core.KevinAriq.PacmanEvent;
+import core.KevinAriq.KevinPacmanEvent;
 import core.iramMakinoon.EventIramMakinoon;
 
 public class CaveExplorer {
@@ -24,7 +24,7 @@ public class CaveExplorer {
 
 		caves[1][2] = new EventRoom("This is the room where you battled the ghost to battleship.", new EventBillyJiaMing());
 		caves[3][2] = new EventRoom("magicsquare", new EventIramMakinoon());
-		caves[2][3] = new EventRoom("pacman", new PacmanEvent());
+		caves[2][3] = new EventRoom("This is the room where you captured the ghosts.", new KevinPacmanEvent());
 
 		caves[2][2].setConnection(CaveRoom.SOUTH, caves[3][2], new Door());
 		caves[2][2].setConnection(CaveRoom.NORTH, caves[1][2], new Door());

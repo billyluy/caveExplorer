@@ -1,23 +1,19 @@
 package core.KevinAriq;
 
-import core.CaveRoom;
+public class AriqPlayer extends AriqEntity {
+	private int energyLevel; // save energy level
 
-public class AriqPlayer {
-	private AriqMap map;
-	private int energyLevel;
-	private int x, y;
-
+	// store directions
 	private int queuedDirection, currDirection;
 
 	public AriqPlayer(AriqMap map, int x, int y) {
-		this.map = map;
-		this.x = x;
-		this.y = y;
+		super(map, x, y);
 
 		this.queuedDirection = -1;
 		this.currDirection = -1;
 	}
 
+	// queue upcoming movements
 	public void addDirection(int direction) {
 		if (canMove(direction)) {
 			this.currDirection = direction;
@@ -27,65 +23,22 @@ public class AriqPlayer {
 		}
 	}
 
-	public boolean canMove(int direction) {
-		if (direction == -1) {
-			return false;
-		}
-
-		int prevX = this.x, prevY = this.y;
-
-		move(direction);
-		boolean can = map.tiles[prevY][prevX].hasEntrance(direction) || ((this.x != prevX || this.y != prevY)
-				&& map.tiles[this.y][this.x].hasEntrance(CaveRoom.oppositeDirection(direction)));
-
-		this.x = prevX;
-		this.y = prevY;
-
-		return can;
-	}
-
-	public void move(int direction) {
-		switch (direction) {
-		case CaveRoom.EAST:
-			if (x < map.getBorderX() - 1)
-				x++;
-			break;
-		case CaveRoom.NORTH:
-			if (y > 0)
-				y--;
-			break;
-		case CaveRoom.SOUTH:
-			if (y < map.getBorderY() - 1)
-				y++;
-			break;
-		case CaveRoom.WEST:
-			if (x > 0)
-				x--;
-			break;
-		}
-	}
-
 	public void update() {
+		// check if can move into queued direction
 		if (canMove(this.queuedDirection)) {
 			this.currDirection = this.queuedDirection;
 		}
 
+		// check if can move in direction before moving
 		if (canMove(this.currDirection)) {
 			move(this.currDirection);
 		}
 
-		if (map.tiles[this.y][this.x].hasEnergy()) {
-			map.tiles[this.y][this.x].setEnergy(false);
+		// check if tile has energy to pickup
+		if (map.tiles[getY()][getX()].hasEnergy()) {
+			map.tiles[getY()][getX()].setEnergy(false);
 			energyLevel++;
 		}
-	}
-
-	public int getX() {
-		return x;
-	}
-
-	public int getY() {
-		return y;
 	}
 
 	public int getEnergyLevel() {
