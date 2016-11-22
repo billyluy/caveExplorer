@@ -75,8 +75,4 @@ public class KevinGhost extends AriqEntity {
 		return alive;
 	}
 
-	class MoveTree {
-
-	}
-
 }
