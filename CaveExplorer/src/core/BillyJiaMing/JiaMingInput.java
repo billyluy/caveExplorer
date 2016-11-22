@@ -35,22 +35,33 @@ public class JiaMingInput {
 		while(!validAttackLoc()){
 			CaveExplorer.print("Invalid location, pick another location.\"(row,col)\"");
 		}
-		if(EventBillyJiaMing.botShip[row][col].equals("O")){
-			EventBillyJiaMing.botMap[row][col]="-";
-			EventBillyJiaMing.botShip[row][col]=" ";
-			EventBillyJiaMing.printArr(EventBillyJiaMing.botMap);
-			CaveExplorer.print("Enemy ship hit at ("+row+","+col+").");
-			attackAgain();
+		if(EventBillyJiaMing.inGame){
+			if(EventBillyJiaMing.botShip[row][col].equals("O")){
+				EventBillyJiaMing.botMap[row][col]="-";
+				EventBillyJiaMing.botShip[row][col]=" ";
+				EventBillyJiaMing.printArr(EventBillyJiaMing.botMap);
+				CaveExplorer.print("Enemy ship hit at ("+row+","+col+").");
+				attackAgain();
+			}else{
+				EventBillyJiaMing.botMap[row][col]="X";
+				CaveExplorer.print("You did not hit any enemy ships at ("+row+","+col+").");
+				EventBillyJiaMing.printArr(EventBillyJiaMing.botMap);
+				pressEnter();
+			}
 		}else{
-			EventBillyJiaMing.botMap[row][col]="X";
-			CaveExplorer.print("You did not hit any enemy ships at ("+row+","+col+").");
-			EventBillyJiaMing.printArr(EventBillyJiaMing.botMap);
+			CaveExplorer.print("Cheat code accepted");
 			pressEnter();
 		}
 	}
 	
-	public static void cheatCode(){
-		
+	public static boolean cheatCode(){
+		if(input.equals("out")){
+			EventBillyJiaMing.inGame=false;
+			EventBillyJiaMing.botShip = new String[10][10];
+			EventBillyJiaMing.setSpace(EventBillyJiaMing.botShip);
+			return true;
+		}
+		return false;
 	}
 	
 	private static void attackAgain() {
@@ -240,6 +251,9 @@ public class JiaMingInput {
 
 	private static boolean validAttackLoc() {
 		input=CaveExplorer.in.nextLine();
+		if(cheatCode()){
+			return true;
+		}
 		int commaIndex=input.indexOf(",");
 		int leftParaIndex=input.indexOf("(");
 		int rightParaIndex=input.indexOf(")");

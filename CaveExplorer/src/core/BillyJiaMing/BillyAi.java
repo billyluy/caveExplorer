@@ -141,7 +141,6 @@ public class BillyAi {
 				}
 			}
 			while(EventBillyJiaMing.userMap[rand1][rand2].equals("X")||EventBillyJiaMing.userMap[rand1][rand2].equals("-")){
-				System.out.println("not suppose to be here");
 				rand1 = (int)(Math.random()*10);
 				rand2 = (int)(Math.random()*10);
 			}

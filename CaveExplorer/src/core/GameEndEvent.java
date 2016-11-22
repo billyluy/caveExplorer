@@ -18,5 +18,4 @@ public class GameEndEvent implements Event {
 		}
 		
 	}
-
 }
