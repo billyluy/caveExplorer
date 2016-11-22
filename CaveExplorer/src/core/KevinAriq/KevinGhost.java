@@ -1,5 +1,7 @@
 package core.KevinAriq;
 
+import core.CaveRoom;
+
 public class KevinGhost extends AriqEntity {
 
 	private boolean alive;
@@ -15,7 +17,7 @@ public class KevinGhost extends AriqEntity {
 
 	public void update() {
 		tick++;
-		tick %= 10;
+		tick %= 20;
 
 		if (tick % 2 != 0)
 			return;
@@ -25,13 +27,30 @@ public class KevinGhost extends AriqEntity {
 		 * changeDirection(); }
 		 */
 
+		double rand = Math.random();
+		if (rand < 0.5) {
+			if (direction == CaveRoom.EAST || direction == CaveRoom.WEST) {
+				if (canMove(CaveRoom.NORTH) && rand < 0.25) {
+					setDirection(CaveRoom.NORTH);
+				} else if (canMove(CaveRoom.SOUTH)) {
+					setDirection(CaveRoom.SOUTH);
+				}
+			} else if (direction == CaveRoom.NORTH || direction == CaveRoom.SOUTH) {
+				if (canMove(CaveRoom.EAST) && rand > 0.25) {
+					setDirection(CaveRoom.EAST);
+				} else if (canMove(CaveRoom.WEST)) {
+					setDirection(CaveRoom.WEST);
+				}
+			}
+		}
+
 		if (!canMove(direction)) {
 			changeDirection();
 		} else {
 			move(direction);
 		}
 	}
- 
+
 	public void changeDirection() {
 		int dir = -1;
 		while ((dir = chooseRandomDirection()) == direction || !canMove(dir)) {
@@ -54,6 +73,10 @@ public class KevinGhost extends AriqEntity {
 
 	public boolean isAlive() {
 		return alive;
+	}
+
+	class MoveTree {
+
 	}
 
 }
