@@ -218,8 +218,10 @@ public class JiaMingInput {
 	}
 
 	private static boolean validCoord(int shipLength) {
-		
 		input=CaveExplorer.in.nextLine();
+		if(cheatCode()){
+			return true;
+		}
 		int commaIndex=input.indexOf(",");
 		int leftParaIndex=input.indexOf("(");
 		int rightParaIndex=input.indexOf(")");

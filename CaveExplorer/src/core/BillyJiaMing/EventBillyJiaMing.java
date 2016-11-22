@@ -27,6 +27,7 @@ public class EventBillyJiaMing implements Event{
 			CaveExplorer.print("- - - Press Enter - - -");
 			CaveExplorer.in.nextLine();
 		}
+		inGame = true;
 		setSpace(userMap);
 		setSpace(botMap);
 		setSpace(botShip);
@@ -39,7 +40,6 @@ public class EventBillyJiaMing implements Event{
 		CaveExplorer.print("You may skip the game anytime by typing the cheat code while ingame");
 		CaveExplorer.print("- - - Press Enter - - -");
 		CaveExplorer.in.nextLine();
-		inGame = true;
 		while(inGame){
 			JiaMingInput.updateBotMap();
 			BillyAi.updateUserHit();
