@@ -45,14 +45,14 @@ public class EventBillyJiaMing implements Event{
 			BillyAi.updateUserHit();
 			CaveExplorer.print("- - - Press Enter - - -");
 			CaveExplorer.in.nextLine();
-			if(noShip(botShip)){
-				readSequence(SEQ_2);
-				inGame = false;
-			}
-			else if (noShip(userMap)){
-				readSequence(SEQ_3);
-				inGame = false;
-			}
+//			if(noShip(botShip)){
+//				readSequence(SEQ_2);
+//				inGame = false;
+//			}
+//			else if (noShip(userMap)){
+//				readSequence(SEQ_3);
+//				inGame = false;
+//			}
 			
 		}
 	}
