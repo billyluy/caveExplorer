@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 //
 public class MakInput extends EventIramMakinoon {
-
+	
 	public static Scanner in;
 
 	private int[][] puzzle;
@@ -24,8 +24,10 @@ public class MakInput extends EventIramMakinoon {
 		int numB = interpretResponse("b");
 
 		int numC = interpretResponse("c");
+		
+		int numD = interpretResponse("d");
 
-		int[][] catchArray = getArray(numA, numB, numC);
+		int[][] catchArray = getArray(numA, numB, numC, numD);
 
 		IramVerify verify = new IramVerify(catchArray);
 
@@ -44,22 +46,22 @@ public class MakInput extends EventIramMakinoon {
 	}
 
 	private void print(int[][] catchArray) {
-
+		System.out.println("Your input was:");
 		for (int row = 0; row < catchArray.length; row++) {
-
 			for (int col = 0; col < catchArray[0].length; col++) {
 
-				System.out.print(catchArray[row][col]);
-
+				System.out.print("|" + catchArray[row][col]);
+				if (col == catchArray[0].length - 1) {
+					System.out.print("|");
+				}
 			}
 
 			System.out.println();
-
 		}
 
 	}
 
-	public int[][] getArray(int numA, int numB, int numC) {
+	public int[][] getArray(int numA, int numB, int numC, int numD) {
 
 		int xA = getX(this.captureIndex[0]);
 
@@ -78,6 +80,12 @@ public class MakInput extends EventIramMakinoon {
 		int yC = getY(this.captureIndex[2]);
 
 		this.puzzle[xC][yC] = numC;
+		
+		int xD = getX(this.captureIndex[3]);
+
+		int yD = getY(this.captureIndex[3]);
+
+		this.puzzle[xD][yD] = numD;
 
 		return this.puzzle;
 

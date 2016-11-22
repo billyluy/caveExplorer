@@ -14,7 +14,10 @@ public class EventIramMakinoon implements Event {
 
 	public static final String[] SEQ_1 = { "You came the wrong way.",
 			"Here lies the ghost that takes numbers away from arrays",
-			"The ghost will not let you pass until you defeat it by completing the magic square" };
+			"The ghost will not let you pass until you defeat it by completing the magic square"
+			, "Make sure all rows, columns and diagonals are equal"
+			,"That's all I am telling you, hahahah!"};
+	
 	public static final String[] SEQ_2 = { "You shall pass", "You succeeded",
 			"You beat the ghost but I advise you to never come back" };
 	public static final String[] SEQ_3 = { "Keep Trying" };
@@ -33,12 +36,15 @@ public class EventIramMakinoon implements Event {
 		while (!verify) {
 			if (wrongs > 1) {
 				System.out.println(
-						"You seem to be struggling do you want to take the easy way out by saying you love Iram and Makinoon?");
-				String yesLst = "yes yeah ye";
+						"You seem to be struggling.\n "
+						+ "Do you want to take the easy way"
+						+ " out by \n"
+						+ "saying 'I love Iram and Makinoon'?");
+				String yesLst = "yes yeah ye ";
 				if (yesLst.indexOf(getInput()) != -1) {
 					System.out.println("Say it!");
 					String input = getInput();
-					if (input.equals("I love Iram and Makinoon.")) {
+					if (input.equals("I love Iram and Makinoon")) {
 						break;
 					}
 				} else {

@@ -3,7 +3,7 @@ package core.iramMakinoon;
 public class MakGenerate {
 	private static int[][] magicSq = new int[3][3];
 	static int[][] puzzles = new int[5][9];// arrays and their lengths
-	private int[] missingIndex = new int[3];
+	private int[] missingIndex = new int[4];
 
 	static int[] Array1 = { 4, 9, 2, 3, 5, 7, 8, 1, 6 };
 	static int[] Array2 = { 8, 3, 4, 1, 5, 9, 6, 7, 2 };
@@ -54,25 +54,30 @@ public class MakGenerate {
 	
 
 	public void printPuzzle() {
-		String[] letters = {"a", "b", "c"};
+		String[] letters = {"a", "b", "c", "d"};
 		int count = 0;
+		
+		
 		for (int row = 0; row < magicSq.length; row++) {
 			for (int col = 0; col < magicSq[0].length; col++) {
+				System.out.print("|");
 				if (isMissing(row, col)) {
-					
 						System.out.print(letters[count++]);
-					
-					
 				} else {
-					System.out.print(magicSq[row][col] );
+					System.out.print( magicSq[row][col] );
+				}
+				
+				if (col == magicSq[0].length - 1) {
+					System.out.print("|");
 				}
 			}
 			System.out.println();
 		}
+		
 	}
 
 	public static int[] generateIndex() {
-		int[] array = { -1, -1, -1 };// doesn't confuse with zeros
+		int[] array = { -1, -1, -1, -1 };// doesn't confuse with zeros
 
 		for (int index = 0; index < array.length; index++) {
 
