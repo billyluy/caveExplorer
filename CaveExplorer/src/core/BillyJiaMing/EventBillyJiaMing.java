@@ -14,7 +14,7 @@ public class EventBillyJiaMing implements Event{
 	public static String[][] botShip = new String[10][10]; //bot ship location
 	public static String[][] userMap = new String[10][10]; //user ship location & bot hit location
 	public static String[][] botMap = new String[10][10]; //user hit location
-	
+	public static boolean inGame;
 	public void play() {
 		readSequence(SEQ_1);
 		CaveExplorer.print("Will you battle the ghost?");
@@ -39,20 +39,20 @@ public class EventBillyJiaMing implements Event{
 		CaveExplorer.print("You may skip the game anytime by typing the cheat code while ingame");
 		CaveExplorer.print("- - - Press Enter - - -");
 		CaveExplorer.in.nextLine();
-		boolean inGame = true;
+		inGame = true;
 		while(inGame){
 			JiaMingInput.updateBotMap();
 			BillyAi.updateUserHit();
 			CaveExplorer.print("- - - Press Enter - - -");
 			CaveExplorer.in.nextLine();
-//			if(noShip(botShip)){
-//				readSequence(SEQ_2);
-//				inGame = false;
-//			}
-//			else if (noShip(userMap)){
-//				readSequence(SEQ_3);
-//				inGame = false;
-//			}
+			if(noShip(botShip)){
+				readSequence(SEQ_2);
+				inGame = false;
+			}
+			else if (noShip(userMap)){
+				readSequence(SEQ_3);
+				inGame = false;
+			}
 			
 		}
 	}
