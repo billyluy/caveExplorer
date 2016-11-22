@@ -86,7 +86,7 @@ public class BillyAi {
 					dirPick = 1;
 				}
 			}else if(dirPick == 2){
-				if(y+1<10){
+				if(y+1<10){ 
 					y+= 1;
 				}else{
 					y-=(y-currY)+1; 
@@ -108,24 +108,17 @@ public class BillyAi {
 		boolean hitAdja = false;
 		int prevRand1 = -1;
 		int prevRand2 = -1;
-		int prevDir = -1;
 		int count =0;
 		while(myTurn){
 			int rand1 = (int)(Math.random()*10);
 			int rand2 = (int)(Math.random()*10);
-			if(count >=4){
-				hitAdja =false;
-				count =0;
-			}
+//			if(count >=4){
+//				hitAdja =false;
+//				count =0;
+//			}
 			while(hitAdja){
-				count++;
+				//count++;
 				int randDir = (int)(Math.random()*4 +1);
-//				prevDir = randDir;
-//				if(!(prevDir==-1)){
-//					if(prevDir==1){
-//						
-//					}
-//				}
 				if(randDir ==1 && prevRand1-1>-1){
 					rand1 = prevRand1-1;
 					break;
@@ -140,8 +133,8 @@ public class BillyAi {
 					break;
 				}
 			}
+			System.out.println(rand1+" "+rand2);
 			while(EventBillyJiaMing.userMap[rand1][rand2].equals("X")||EventBillyJiaMing.userMap[rand1][rand2].equals("-")){
-				System.out.println("not suppose to be here");
 				rand1 = (int)(Math.random()*10);
 				rand2 = (int)(Math.random()*10);
 			}
@@ -158,6 +151,7 @@ public class BillyAi {
 				EventBillyJiaMing.userMap[rand1][rand2]=("X");
 				CaveExplorer.print("Ghost:"+randomFromArray(missRes));
 				EventBillyJiaMing.printArr(EventBillyJiaMing.userMap);
+				hitAdja =false;
 				myTurn =false;
 			}
 		}

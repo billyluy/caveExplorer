@@ -35,22 +35,33 @@ public class JiaMingInput {
 		while(!validAttackLoc()){
 			CaveExplorer.print("Invalid location, pick another location.\"(row,col)\"");
 		}
-		if(EventBillyJiaMing.botShip[row][col].equals("O")){
-			EventBillyJiaMing.botMap[row][col]="-";
-			EventBillyJiaMing.botShip[row][col]=" ";
-			EventBillyJiaMing.printArr(EventBillyJiaMing.botMap);
-			CaveExplorer.print("Enemy ship hit at ("+row+","+col+").");
-			attackAgain();
+		if(EventBillyJiaMing.inGame){
+			if(EventBillyJiaMing.botShip[row][col].equals("O")){
+				EventBillyJiaMing.botMap[row][col]="-";
+				EventBillyJiaMing.botShip[row][col]=" ";
+				EventBillyJiaMing.printArr(EventBillyJiaMing.botMap);
+				CaveExplorer.print("Enemy ship hit at ("+row+","+col+").");
+				attackAgain();
+			}else{
+				EventBillyJiaMing.botMap[row][col]="X";
+				CaveExplorer.print("You did not hit any enemy ships at ("+row+","+col+").");
+				EventBillyJiaMing.printArr(EventBillyJiaMing.botMap);
+				pressEnter();
+			}
 		}else{
-			EventBillyJiaMing.botMap[row][col]="X";
-			CaveExplorer.print("You did not hit any enemy ships at ("+row+","+col+").");
-			EventBillyJiaMing.printArr(EventBillyJiaMing.botMap);
+			CaveExplorer.print("Cheat code accepted");
 			pressEnter();
 		}
 	}
 	
-	public static void cheatCode(){
-		
+	public static boolean cheatCode(){
+		if(input.equals("out")){
+			EventBillyJiaMing.inGame=false;
+			EventBillyJiaMing.botShip = new String[10][10];
+			EventBillyJiaMing.setSpace(EventBillyJiaMing.botShip);
+			return true;
+		}
+		return false;
 	}
 	
 	private static void attackAgain() {
@@ -128,6 +139,7 @@ public class JiaMingInput {
 
 	private static void pickACoord(int shipLength) {
 		CaveExplorer.print("Pick a coord by typing \"(row,col)\"");
+		
 			while(!validCoord(shipLength)){
 				printUserMap();
 				CaveExplorer.print("Enter a valid coord \"(row,col)\"");
@@ -207,12 +219,15 @@ public class JiaMingInput {
 
 	private static boolean validCoord(int shipLength) {
 		input=CaveExplorer.in.nextLine();
+		if(cheatCode()){
+			return true;
+		}
 		int commaIndex=input.indexOf(",");
 		int leftParaIndex=input.indexOf("(");
 		int rightParaIndex=input.indexOf(")");
 		if(commaIndex>leftParaIndex && rightParaIndex>commaIndex){
-			String row=input.substring(leftParaIndex+1, commaIndex);
-			String col=input.substring(commaIndex+1, rightParaIndex);
+			String row=input.substring(leftParaIndex+1, commaIndex).trim();
+			String col=input.substring(commaIndex+1, rightParaIndex).trim();
 			if(isNumber(row) && isNumber(col)){
 				changeRowCol(row,col);
 				if(JiaMingInput.row>=0 && JiaMingInput.row<=9 && JiaMingInput.col>=0 && JiaMingInput.col<=9){
@@ -222,30 +237,27 @@ public class JiaMingInput {
 		}
 		return false;
 	}
-	
+
 	private static void changeRowCol(String sRow, String sCol) {
 		row=Integer.parseInt(sRow);
 		col=Integer.parseInt(sCol);
 	}
-	
+
 	private static boolean isNumber(String str){
-		try{  
-			double d = Double.parseDouble(str);  
-		}  
-		catch(NumberFormatException err){ //if try statement returns this error, then return false 
-		    return false;  
-		}  
-		return true;  
+		return str.matches("[0-9]");  
 	}
 
 	private static boolean validAttackLoc() {
 		input=CaveExplorer.in.nextLine();
+		if(cheatCode()){
+			return true;
+		}
 		int commaIndex=input.indexOf(",");
 		int leftParaIndex=input.indexOf("(");
 		int rightParaIndex=input.indexOf(")");
 		if(commaIndex>leftParaIndex && rightParaIndex>commaIndex){
-			String row=input.substring(leftParaIndex+1, commaIndex);
-			String col=input.substring(commaIndex+1, rightParaIndex);
+			String row=input.substring(leftParaIndex+1, commaIndex).trim();
+			String col=input.substring(commaIndex+1, rightParaIndex).trim();
 			if(isNumber(row) && isNumber(col)){
 				changeRowCol(row,col);
 				if(JiaMingInput.row>=0 && JiaMingInput.row<=9 && JiaMingInput.col>=0 && JiaMingInput.col<=9){

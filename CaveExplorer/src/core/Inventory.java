@@ -6,7 +6,7 @@ public class Inventory {
 	private String map;
 
 	public Inventory() {
-		hasMap = true;
+		hasMap = false;
 		updateMap();
 	}
 
@@ -30,9 +30,17 @@ public class Inventory {
 						text += "|";
 					if (i == 0)
 						text += "   ";
-					else if (i == 1)
-						text += " " + cr.getContents() + " ";
-					else if (i == 2) {
+					else if (i == 1) {
+						if (!(cr instanceof EventRoom)) {
+							text += " " + cr.getContents() + " ";
+						} else {
+							if (!((EventRoom) cr).occured()) {
+								text += " * ";
+							} else {
+								text += " " + cr.getContents() + " ";
+							}
+						}
+					} else if (i == 2) {
 						// if door is open
 						if (cr.getDoor(CaveRoom.SOUTH) != null && cr.getDoor(CaveRoom.SOUTH).isOpen())
 							text += "   ";
