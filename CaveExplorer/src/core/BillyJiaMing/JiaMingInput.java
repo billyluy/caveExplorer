@@ -49,6 +49,10 @@ public class JiaMingInput {
 		}
 	}
 	
+	public static void cheatCode(){
+		
+	}
+	
 	private static void attackAgain() {
 		CaveExplorer.print("You get to hit again.");
 		pressEnter();
