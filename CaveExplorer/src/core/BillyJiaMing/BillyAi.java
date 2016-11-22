@@ -5,8 +5,8 @@ import core.CaveExplorer;
 public class BillyAi {
 	
 	private static String[] hitRes = {"HAHAHA, I have hit your ship","LOOK, down it goes", "You see that shot, you can't possibly beat me","Another one"};
-	private static String[] missRes = {"HMM, you got lucky this time","Not like this","NOOOO","I'll get one of yours",
-			"You seem better than you look"};
+	private static String[] missRes = {"HMM, you got lucky this time","What I missed??? Not possible","NOOOO","I'll get one of yours next time",
+			"Looks like I missed this time","Did you rig this?"};
 
 	public static String[][] placeShip() {
 		for(int i=2;i<6;i++){
@@ -99,31 +99,49 @@ public class BillyAi {
 		}
 	}
 	public static void updateUserHit() {
-		int rand1 = (int)(Math.random()*10);
-		int rand2 = (int)(Math.random()*10);
-		while(EventBillyJiaMing.userMap[rand1][rand2].equals("X")){
-			rand1 = (int)(Math.random()*10);
-			rand2 = (int)(Math.random()*10);
-		}
-		if(EventBillyJiaMing.userMap[rand1][rand2].equals("O")){
-			EventBillyJiaMing.userMap[rand1][rand2]=("-");
-			CaveExplorer.print("Ghost:"+randomFromArray(hitRes));
-// 			boolean prevHit = true;
-// 			while(prevHit){
-// 				int randDir = (int)(Math.random()*4 +1);
-// 				if(randDir ==1 && rand1-1<=-1){
-// 					randDir =3;
-// 				}else if(randDir ==2 &&rand2+1>=10){
-// 					randDir =4;
-// 				}else if(randDir ==3 &&rand1+1>=10){
-// 					randDir =1;
-// 				}else if(randDir==4 &&rand2-1<=-1){
-// 					randDir =2;
-// 				}
-// 			}
-		}else{
-			EventBillyJiaMing.userMap[rand1][rand2]=("X");
-			CaveExplorer.print("Ghost:"+randomFromArray(missRes));
+		boolean myTurn = true;
+		boolean prevHit = false;
+		int prevRand1 = -1;
+		int prevRand2 = -1;
+		while(myTurn){
+			int rand1 = (int)(Math.random()*10);
+			int rand2 = (int)(Math.random()*10);
+			while(prevHit){
+				int randDir = (int)(Math.random()*4 +1);
+				if(randDir ==1 && prevRand1-1>-1){
+					rand1 = prevRand1-1;
+					break;
+				}else if(randDir ==2 &&prevRand2+1<10){
+					rand2 = prevRand2+1;
+					break;
+				}else if(randDir ==3 &&prevRand1+1<10){
+					rand1 = prevRand1+1;
+					break;
+				}else if(randDir==4 &&prevRand2-1>-1){
+					rand2 = prevRand2-1;
+					break;
+				}
+			}
+			while(EventBillyJiaMing.userMap[rand1][rand2].equals("X")||EventBillyJiaMing.userMap[rand1][rand2].equals("-")){
+				System.out.println("not suppose to be here");
+				rand1 = (int)(Math.random()*10);
+				rand2 = (int)(Math.random()*10);
+			}
+			if(EventBillyJiaMing.userMap[rand1][rand2].equals("O")){
+				EventBillyJiaMing.userMap[rand1][rand2]=("-");
+				CaveExplorer.print("Ghost:"+randomFromArray(hitRes));
+				EventBillyJiaMing.printArr(EventBillyJiaMing.userMap);
+				CaveExplorer.print("- - - Press Enter - - -");
+				CaveExplorer.in.nextLine();
+				prevRand1=rand1;
+				prevRand2=rand2;
+				prevHit =true;
+			}else{
+				EventBillyJiaMing.userMap[rand1][rand2]=("X");
+				CaveExplorer.print("Ghost:"+randomFromArray(missRes));
+				EventBillyJiaMing.printArr(EventBillyJiaMing.userMap);
+				myTurn =false;
+			}
 		}
 		
 	}
