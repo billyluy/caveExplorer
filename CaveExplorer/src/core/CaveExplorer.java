@@ -28,6 +28,7 @@ public class CaveExplorer {
 		caves[1][1] = new EventRoom("This is the room where you battled the ghost to battleship.", new EventBillyJiaMing());
 		caves[2][2] = new EventRoom("This is where the ghosts comes from", new EventIramMakinoon());
 		caves[3][3] = new EventRoom("This is the room where you captured the ghosts.", new KevinPacmanEvent());
+		caves[4][3] = new EventRoom("You found the exit here", new GameEndEvent());
 
 		caves[0][0].setConnection(CaveRoom.EAST, caves[0][1], new Door());
 		caves[0][1].setConnection(CaveRoom.SOUTH, caves[1][1], new Door());
@@ -59,4 +60,3 @@ public class CaveExplorer {
 		System.out.println(string);
 	}
 }
-

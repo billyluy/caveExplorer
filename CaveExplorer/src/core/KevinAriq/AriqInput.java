@@ -5,16 +5,16 @@ import core.CaveExplorer;
 public class AriqInput {
 	KevinPacmanEvent event;
 
-	public AriqInput(KevinPacmanEvent event) {
+	public AriqInput(KevinPacmanEvent event){
 		this.event = event;
 	}
 
 	// handle input
-	public void handleInput() {
-		while (!event.hasWon.get()) {
+	public void handleInput(){
+		while (!event.hasWon.get()){
 			String input = CaveExplorer.in.nextLine();
 
-			switch (input) {
+			switch (input){
 			case "w":
 			case "a":
 			case "s":
