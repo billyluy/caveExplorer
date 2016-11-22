@@ -139,6 +139,7 @@ public class JiaMingInput {
 
 	private static void pickACoord(int shipLength) {
 		CaveExplorer.print("Pick a coord by typing \"(row,col)\"");
+		
 			while(!validCoord(shipLength)){
 				printUserMap();
 				CaveExplorer.print("Enter a valid coord \"(row,col)\"");
@@ -217,6 +218,7 @@ public class JiaMingInput {
 	}
 
 	private static boolean validCoord(int shipLength) {
+		
 		input=CaveExplorer.in.nextLine();
 		int commaIndex=input.indexOf(",");
 		int leftParaIndex=input.indexOf("(");
