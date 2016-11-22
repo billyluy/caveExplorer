@@ -128,5 +128,5 @@ public class MakInput extends EventIramMakinoon {
 		return Integer.parseInt(response);
 
 	}
-
+//
 }

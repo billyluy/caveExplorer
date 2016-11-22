@@ -14,6 +14,7 @@ public class IramVerify extends EventIramMakinoon{
 				check=false;
 				break;
 			}
+			//
 			//column check
 			sum=0;
 			for(int j = 0;j < 3;j++) {

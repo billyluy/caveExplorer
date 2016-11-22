@@ -57,7 +57,7 @@ public class MakGenerate {
 		String[] letters = {"a", "b", "c", "d"};
 		int count = 0;
 		
-		
+		//
 		for (int row = 0; row < magicSq.length; row++) {
 			for (int col = 0; col < magicSq[0].length; col++) {
 				System.out.print("|");
