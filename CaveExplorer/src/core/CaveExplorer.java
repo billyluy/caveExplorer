@@ -2,6 +2,8 @@ package core;
 
 import java.util.Scanner;
 
+import core.EventRoom;
+import core.GameStartEvent;
 import core.BillyJiaMing.EventBillyJiaMing;
 import core.KevinAriq.KevinPacmanEvent;
 import core.iramMakinoon.EventIramMakinoon;
@@ -21,16 +23,21 @@ public class CaveExplorer {
 				caves[row][col] = new CaveRoom("This cave has coordinates " + row + "," + col);
 			}
 		}
+		
+		caves[0][1] = new EventRoom("This is where you found the map", new GameStartEvent());
+		caves[1][1] = new EventRoom("This is the room where you battled the ghost to battleship.", new EventBillyJiaMing());
+		caves[2][2] = new EventRoom("This is where the ghosts comes from", new EventIramMakinoon());
+		caves[3][3] = new EventRoom("This is the room where you captured the ghosts.", new KevinPacmanEvent());
 
-		caves[1][2] = new EventRoom("This is the room where you battled the ghost to battleship.", new EventBillyJiaMing());
-		caves[3][2] = new EventRoom("magicsquare", new EventIramMakinoon());
-		caves[2][3] = new EventRoom("This is the room where you captured the ghosts.", new KevinPacmanEvent());
-
-		caves[2][2].setConnection(CaveRoom.SOUTH, caves[3][2], new Door());
-		caves[2][2].setConnection(CaveRoom.NORTH, caves[1][2], new Door());
+		caves[0][0].setConnection(CaveRoom.EAST, caves[0][1], new Door());
+		caves[0][1].setConnection(CaveRoom.SOUTH, caves[1][1], new Door());
+		caves[1][1].setConnection(CaveRoom.SOUTH, caves[2][1], new Door());
+		caves[2][1].setConnection(CaveRoom.EAST, caves[2][2], new Door());
 		caves[2][2].setConnection(CaveRoom.EAST, caves[2][3], new Door());
+		caves[2][3].setConnection(CaveRoom.SOUTH, caves[3][3], new Door());
+		caves[3][3].setConnection(CaveRoom.SOUTH, caves[4][3], new Door());
 
-		currentRoom = caves[2][2];
+		currentRoom = caves[0][0];
 		currentRoom.enter();
 
 		inventory = new Inventory();
@@ -52,3 +59,4 @@ public class CaveExplorer {
 		System.out.println(string);
 	}
 }
+
