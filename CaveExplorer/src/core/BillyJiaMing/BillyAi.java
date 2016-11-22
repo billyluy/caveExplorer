@@ -28,8 +28,7 @@ public class BillyAi {
 			nextPos(randDir, rand1, rand2, i);
 		}
 		CaveExplorer.print("Ghost: I have placed my ships, here we go");
-		CaveExplorer.print("- - - Press Enter - - -");
-		CaveExplorer.in.nextLine();
+		EventBillyJiaMing.pressEnter();
 		return EventBillyJiaMing.botShip;
 	}
 
@@ -142,8 +141,7 @@ public class BillyAi {
 				EventBillyJiaMing.userMap[rand1][rand2]=("-");
 				CaveExplorer.print("Ghost:"+randomFromArray(hitRes));
 				EventBillyJiaMing.printArr(EventBillyJiaMing.userMap);
-				CaveExplorer.print("- - - Press Enter - - -");
-				CaveExplorer.in.nextLine();
+				EventBillyJiaMing.pressEnter();
 				prevRand1=rand1;
 				prevRand2=rand2;
 				hitAdja =true;

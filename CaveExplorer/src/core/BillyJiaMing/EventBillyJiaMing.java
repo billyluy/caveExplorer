@@ -20,39 +20,40 @@ public class EventBillyJiaMing implements Event{
 		CaveExplorer.print("Will you battle the ghost?");
 		if(CaveExplorer.in.nextLine().indexOf("yes")>-1){
 			CaveExplorer.print("Good luck.");
-			CaveExplorer.print("- - - Press Enter - - -");
-			CaveExplorer.in.nextLine();
+			pressEnter();
 		}else{
 			CaveExplorer.print("Too bad, you have nowhere else to go and you must battle him");
-			CaveExplorer.print("- - - Press Enter - - -");
-			CaveExplorer.in.nextLine();
+			pressEnter();
 		}
 		inGame = true;
 		setSpace(userMap);
 		setSpace(botMap);
 		setSpace(botShip);
-		JiaMingInput.placeShip();
-		printArr(userMap);
-		CaveExplorer.print("This is where all your ships are");
-		CaveExplorer.print("- - - Press Enter - - -");
-		CaveExplorer.in.nextLine();
-		BillyAi.placeShip();
-		CaveExplorer.print("You may skip the game anytime by typing the cheat code while ingame");
-		CaveExplorer.print("- - - Press Enter - - -");
-		CaveExplorer.in.nextLine();
-		while(inGame){
-			JiaMingInput.updateBotMap();
-			BillyAi.updateUserHit();
-			CaveExplorer.print("- - - Press Enter - - -");
-			CaveExplorer.in.nextLine();
-			if(noShip(botShip)){
-				readSequence(SEQ_2);
-				inGame = false;
+		JiaMingInput.promptPlaceShip();
+		if(inGame){
+			printArr(userMap);
+			CaveExplorer.print("This is where all your ships are");
+			pressEnter();
+			BillyAi.placeShip();
+			CaveExplorer.print("You may skip the game anytime by typing the cheat code while ingame");
+			pressEnter();
+			while(inGame){
+				JiaMingInput.promptAttack();
+				BillyAi.updateUserHit();
+				pressEnter();
+				if(noShip(botShip)){
+					readSequence(SEQ_2);
+					inGame = false;
+				}
+				else if (noShip(userMap)){
+					readSequence(SEQ_3);
+					inGame = false;
+				}
 			}
-			else if (noShip(userMap)){
-				readSequence(SEQ_3);
-				inGame = false;
-			}
+		}else {
+			CaveExplorer.print("Cheat code accepted");
+			pressEnter();
+			readSequence(SEQ_2);
 			
 		}
 	}
@@ -96,5 +97,9 @@ public class EventBillyJiaMing implements Event{
 			CaveExplorer.in.nextLine();
 		}
 		
+	}
+	public static void pressEnter(){
+		CaveExplorer.print("- - - Press Enter - - -");
+		CaveExplorer.in.nextLine();
 	}
 }
