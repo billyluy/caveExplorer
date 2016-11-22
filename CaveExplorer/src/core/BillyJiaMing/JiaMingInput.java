@@ -245,7 +245,7 @@ public class JiaMingInput {
 			if(isNumber(row) && isNumber(col)){
 				changeRowCol(row,col);
 				if(JiaMingInput.row>=0 && JiaMingInput.row<=9 && JiaMingInput.col>=0 && JiaMingInput.col<=9){
-					if(EventBillyJiaMing.botMap[JiaMingInput.row][JiaMingInput.col].equals("X")==false || EventBillyJiaMing.botMap[JiaMingInput.row][JiaMingInput.col].equals("-")==false){
+					if(EventBillyJiaMing.botMap[JiaMingInput.row][JiaMingInput.col].equals("X")==false && EventBillyJiaMing.botMap[JiaMingInput.row][JiaMingInput.col].equals("-")==false){
 						return true;
 					}
 				}
