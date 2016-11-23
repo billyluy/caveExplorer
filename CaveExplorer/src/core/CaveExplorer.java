@@ -25,7 +25,7 @@ public class CaveExplorer {
 		}
 		
 		caves[0][1] = new EventRoom("This is where you found the map", new GameStartEvent());
-		caves[1][1] = new EventRoom("This is the room where you battled the ghost to battleship.", new KevinPacmanEvent());
+		caves[1][1] = new EventRoom("This is the room where you battled the ghost to battleship.", new EventBillyJiaMing());
 		caves[2][2] = new EventRoom("This is where the ghosts comes from", new EventIramMakinoon());
 		caves[3][3] = new EventRoom("This is the room where you captured the ghosts.", new KevinPacmanEvent());
 		caves[4][3] = new EventRoom("You found the exit here", new GameEndEvent());
