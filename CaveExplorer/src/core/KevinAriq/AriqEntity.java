@@ -11,6 +11,7 @@ public abstract class AriqEntity{
 
 	// all subclass must implement this method
 	public abstract void update();
+	public abstract String getCharacter();
 
 	public AriqEntity(AriqMap map, int x, int y){
 		this.map = map;

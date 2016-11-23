@@ -41,6 +41,10 @@ public class AriqPlayer extends AriqEntity {
 		}
 	}
 
+	public String getCharacter() {
+		return this.hasSufficientEnergy() ? "$" : "!";
+	}
+
 	public int getEnergyLevel() {
 		return this.energyLevel;
 	}

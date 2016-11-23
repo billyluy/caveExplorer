@@ -42,7 +42,7 @@ public class KevinPacmanEvent implements Event {
 					map = new AriqMap();
 				}
 
-				sleep(500);
+				sleep(350);
 			}
 		});
 		start();
