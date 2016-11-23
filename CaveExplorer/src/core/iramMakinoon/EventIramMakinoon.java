@@ -41,7 +41,7 @@ public class EventIramMakinoon implements Event {
 						+ " out by \n"
 						+ "saying 'I love Iram and Makinoon'?");
 				String yesLst = "yes yeah ye ";
-				if (yesLst.indexOf(getInput()) != -1) {
+				if (yesLst.indexOf(getInput().toLowerCase()) != -1) {
 					System.out.println("Say it!");
 					String input = getInput();
 					if (input.equals("I love Iram and Makinoon")) {
