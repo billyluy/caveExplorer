@@ -111,12 +111,11 @@ public class BillyAi {
 		while(myTurn){
 			int rand1 = (int)(Math.random()*10);
 			int rand2 = (int)(Math.random()*10);
-//			if(count >=4){
-//				hitAdja =false;
-//				count =0;
-//			}
 			while(hitAdja){
-				//count++;
+				if(count>4){
+					break;
+				}
+				count++;
 				int randDir = (int)(Math.random()*4 +1);
 				if(randDir ==1 && prevRand1-1>-1){
 					rand1 = prevRand1-1;
@@ -132,11 +131,11 @@ public class BillyAi {
 					break;
 				}
 			}
-			System.out.println(rand1+" "+rand2);
 			while(EventBillyJiaMing.userMap[rand1][rand2].equals("X")||EventBillyJiaMing.userMap[rand1][rand2].equals("-")){
 				rand1 = (int)(Math.random()*10);
 				rand2 = (int)(Math.random()*10);
 			}
+			CaveExplorer.print("Ghost: I choose("+rand1+","+rand2+")");
 			if(EventBillyJiaMing.userMap[rand1][rand2].equals("O")){
 				EventBillyJiaMing.userMap[rand1][rand2]=("-");
 				CaveExplorer.print("Ghost:"+randomFromArray(hitRes));
